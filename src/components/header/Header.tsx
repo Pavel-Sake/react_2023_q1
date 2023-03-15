@@ -11,18 +11,24 @@ interface PathProps {
   paths: Ipath[];
 }
 
-function Header(props: PathProps) {
-  return (
-    <div className={styles.header}>
-      <div className="container">
-        <Nav paths={props.paths} />
-        <div className={styles.searchBlock}>
-          <SearchInput message="search" />
-          <SearchButton />
+type MyState = {
+  state: string;
+};
+
+class Header extends React.Component<PathProps, MyState> {
+  render() {
+    return (
+      <div className={styles.header}>
+        <div className="container">
+          <Nav paths={this.props.paths} />
+          <div className={styles.searchBlock}>
+            <SearchInput message="search" />
+            <SearchButton number={34} />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export { Header };

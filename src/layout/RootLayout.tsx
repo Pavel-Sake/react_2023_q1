@@ -13,7 +13,7 @@ function RootLayout(props: PathProps) {
   return (
     <div className={styles.rootLayout}>
       <Header paths={props.paths} />
-      <main className="container">
+      <main className={styles.main}>
         <Outlet />
       </main>
     </div>

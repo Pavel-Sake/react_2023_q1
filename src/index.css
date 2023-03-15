@@ -4,9 +4,10 @@
 }
 
 .container {
-    padding: 0 10%;
+    padding: 0 5%;
 }
 
 .active {
-    color: red
+    color: black;
+    text-decoration: underline;
 }

@@ -1,16 +1,14 @@
 .input {
     padding: 10px;
+    margin-right: 10px;
     outline: none;
     border: none;
 
-
     color: black;
     font-size: 16px;
-
-    background: beige;
 }
 
 .input:focus {
     border-radius: 6px;
-    border: 1px solid black;
+    outline: 1px solid #5e5d5d;
 }

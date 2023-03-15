@@ -3,11 +3,15 @@
 }
 
 .link {
-    color: black;
+    color: #5e5d5d;
 
     font-size: 16px;
     text-decoration: none;
 }
 
+.link:hover {
+    cursor: pointer;
+    color: black;
+}
 
 

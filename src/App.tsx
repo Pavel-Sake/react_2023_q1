@@ -6,13 +6,14 @@ import { Header } from './components/header/Header';
 import { RootLayout } from './layout/RootLayout';
 
 import { paths } from './data/paths';
+import { products } from './data/products';
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<RootLayout paths={paths} />}>
-          <Route index element={<Home message="dfdf" />} />
+          <Route index element={<Home products={products} />} />
           <Route path="/about" element={<About message="dfdf" />} />
         </Route>
       </Routes>

@@ -1,9 +1,11 @@
 import React from 'react';
-import { Header } from '../../components/header/Header';
+import { ItemProduct } from '../../components/ItemProduct/ItemProduct';
+import { Iproducts } from '../../interfaces/products';
+import styles from './styles.module.css';
 
-type MyProps = {
-  message: string;
-};
+interface MyProps {
+  products: Iproducts[];
+}
 
 type MyState = {
   count: number;
@@ -12,8 +14,12 @@ type MyState = {
 class Home extends React.Component<MyProps, MyState> {
   render() {
     return (
-      <div>
-        <h1>kjsdfhbksdhfbksjdhfbkvjsdhfbvkjsdhbfvjs</h1>
+      <div className="container">
+        <ul className={styles.productList}>
+          {this.props.products.map((item) => {
+            return <ItemProduct key={item.id} product={item} />;
+          })}
+        </ul>
       </div>
     );
   }
