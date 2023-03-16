@@ -7,15 +7,23 @@ import { Ipath } from '../../interfaces/path';
 
 interface PathProps {
   paths: Ipath[];
+  changePathLabel: (text: string) => void;
+
 }
 
-class Nav extends React.Component<PathProps, any> {
+type MyState = {
+  state: string;
+};
+class Nav extends React.Component<PathProps, MyState> {
   render() {
+    const { paths } = this.props;
     return (
       <nav className={styles.nav}>
         <ul className={styles.navList}>
-          {this.props.paths.map((path) => {
-            return <ItemLink path={path} key={path.index} />;
+          {paths.map((path) => {
+            return (
+              <ItemLink path={path} key={path.index} changePathLabel={this.props.changePathLabel} />
+            );
           })}
         </ul>
       </nav>

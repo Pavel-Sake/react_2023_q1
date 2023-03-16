@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { ItemProduct } from '../../components/ItemProduct/ItemProduct';
 import { Iproducts } from '../../interfaces/products';
 import styles from './styles.module.css';

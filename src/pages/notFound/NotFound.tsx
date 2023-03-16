@@ -12,7 +12,7 @@ class NotFound extends React.Component<MyProps, MyState> {
   render() {
     return (
       <div className={styles.notFound}>
-        <h3 className={styles.text}>Page has not found</h3>
+        <h3 className={styles.text}>Page has not found (404)</h3>
       </div>
     );
   }

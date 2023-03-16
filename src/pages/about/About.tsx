@@ -8,6 +8,7 @@ type MyProps = {
 type MyState = {
   count: number;
 };
+
 class About extends React.Component<MyProps, MyState> {
   render() {
     return (
