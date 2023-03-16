@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 interface PathProps {
   path: Ipath;
-  changePathLabel: (text: string) => void;
+  changePageLabel: (text: string) => void;
 }
 
 type MyState = {
@@ -22,7 +22,7 @@ class ItemLink extends React.Component<PathProps, MyState> {
           className={styles.link}
           to={path}
           onClick={() => {
-            this.props.changePathLabel(path);
+            this.props.changePageLabel(path);
           }}
         >
           {value}

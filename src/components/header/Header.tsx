@@ -6,26 +6,51 @@ import { Routes, Route, Link } from 'react-router-dom';
 
 import styles from './styles.module.css';
 import { Ipath } from '../../interfaces/path';
-import {paths} from "../../data/paths";
 
 interface PathProps {
   paths: Ipath[];
-  changePathLabel: (text: string) => void;
-  pathLabel: string;
 }
 
 type MyState = {
-  path: string;
+  path: string | undefined;
 };
 
+function getPageLabel(text: string): string | undefined {
+  let label = 'Not found';
+  if (text === '/') {
+    label = 'Home';
+    return label;
+  }
+
+  if (text === '/about') {
+    label = 'About';
+    return label;
+  }
+  return label;
+}
+
 class Header extends React.Component<PathProps, MyState> {
+  state: MyState = {
+    path: 'Home',
+  };
+  componentDidMount() {
+    const url = window.location.pathname;
+    const label = getPageLabel(url);
+    this.setState({ path: label });
+  }
+
   render() {
+    const changePageLabel = (text: string): void => {
+      const label = getPageLabel(text);
+      this.setState({ path: label });
+    };
+
     return (
       <div className={styles.header}>
         <div className="container">
-          <Nav paths={this.props.paths} changePathLabel={this.props.changePathLabel} />
+          <Nav paths={this.props.paths} changePageLabel={changePageLabel} />
           <div className={styles.searchBlock}>
-            <div>{this.props.pathLabel}</div>
+            <div>{this.state.path}</div>
             <SearchInput message="search" />
             <SearchButton number={34} />
           </div>
