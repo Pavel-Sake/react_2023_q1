@@ -1,0 +1,21 @@
+import React from 'react';
+import styles from './styles.module.css';
+
+type MyProps = {
+  message: string;
+};
+
+type MyState = {
+  state: number;
+};
+class NotFound extends React.Component<MyProps, MyState> {
+  render() {
+    return (
+      <div className={styles.notFound}>
+        <h3 className={styles.text}>Page has not found</h3>
+      </div>
+    );
+  }
+}
+
+export { NotFound };

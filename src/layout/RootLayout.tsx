@@ -14,7 +14,9 @@ function RootLayout(props: PathProps) {
     <div className={styles.rootLayout}>
       <Header paths={props.paths} />
       <main className={styles.main}>
-        <Outlet />
+        <div className="container">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

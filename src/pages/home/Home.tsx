@@ -14,13 +14,11 @@ type MyState = {
 class Home extends React.Component<MyProps, MyState> {
   render() {
     return (
-      <div className="container">
-        <ul className={styles.productList}>
-          {this.props.products.map((item) => {
-            return <ItemProduct key={item.id} product={item} />;
-          })}
-        </ul>
-      </div>
+      <ul className={styles.productList}>
+        {this.props.products.map((item) => {
+          return <ItemProduct key={item.id} product={item} />;
+        })}
+      </ul>
     );
   }
 }

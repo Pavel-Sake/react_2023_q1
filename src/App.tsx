@@ -1,6 +1,7 @@
 import React from 'react';
 import { Home } from './pages/home/Home';
 import { About } from './pages/about/About';
+import {NotFound} from "./pages/notFound/NotFound";
 import { Routes, Route, Link } from 'react-router-dom';
 import { Header } from './components/header/Header';
 import { RootLayout } from './layout/RootLayout';
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<RootLayout paths={paths} />}>
           <Route index element={<Home products={products} />} />
           <Route path="/about" element={<About message="dfdf" />} />
+          <Route path="*" element={<NotFound message="not found" />} />
         </Route>
       </Routes>
     </div>
