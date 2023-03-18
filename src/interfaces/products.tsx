@@ -8,4 +8,4 @@ interface Iproducts {
   id: number
 }
 
-export { Iproducts };
+export type { Iproducts };

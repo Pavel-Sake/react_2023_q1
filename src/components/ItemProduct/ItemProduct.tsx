@@ -12,7 +12,7 @@ type MyState = {
 };
 class ItemProduct extends React.Component<MyProps, MyState> {
   render() {
-    const { name, author, rating, price, currency, src } = this.props.product
+    const { name, author, rating, price, currency, src } = this.props.product;
     return (
       <li className={styles.item}>
         <img className={styles.img} src={src} />

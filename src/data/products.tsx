@@ -2,12 +2,21 @@ import { Iproducts } from '../interfaces/products';
 
 const products: Iproducts[] = [
   {
+    name: 'Daisy Jones and The Six',
+    author: 'Taylor Jenkins Reid',
+    price: 50,
+    currency: 'zł',
+    rating: 4,
+    src: '/img/DaisyJones.jpg',
+    id: 3,
+  },
+  {
     name: 'Harry Potter and the Cursed Child - Parts I & II',
     author: 'J. K. Rowling',
     price: 87,
     currency: 'zł',
     rating: 5,
-    src: './public/img/HarryPotter.jpg',
+    src: '/img/HarryPotter.jpg',
     id: 1,
   },
   {
@@ -16,17 +25,8 @@ const products: Iproducts[] = [
     price: 75,
     currency: 'zł',
     rating: 4,
-    src: './public/img/FantasticBeasts.jpg',
+    src: '/img/FantasticBeasts.jpg',
     id: 2,
-  },
-  {
-    name: 'Daisy Jones and The Six',
-    author: 'Taylor Jenkins Reid',
-    price: 50,
-    currency: 'zł',
-    rating: 4,
-    src: './public/img/DaisyJones.jpg',
-    id: 3,
   },
   {
     name: 'Ends With Us: The most heartbreaking novel you ll ever read',
@@ -34,7 +34,7 @@ const products: Iproducts[] = [
     price: 52,
     currency: 'zł',
     rating: 4,
-    src: './public/img/EndsWithUs.jpg',
+    src: '/img/EndsWithUs.jpg',
     id: 4,
   },
   {
@@ -43,7 +43,7 @@ const products: Iproducts[] = [
     price: 87,
     currency: 'zł',
     rating: 5,
-    src: './public/img/HarryPotter.jpg',
+    src: '/img/HarryPotter.jpg',
     id: 5,
   },
   {
@@ -52,7 +52,7 @@ const products: Iproducts[] = [
     price: 75,
     currency: 'zł',
     rating: 4,
-    src: './public/img/FantasticBeasts.jpg',
+    src: '/img/FantasticBeasts.jpg',
     id: 6,
   },
   {
@@ -61,7 +61,7 @@ const products: Iproducts[] = [
     price: 50,
     currency: 'zł',
     rating: 4,
-    src: './public/img/DaisyJones.jpg',
+    src: '/img/DaisyJones.jpg',
     id: 7,
   },
   {
@@ -70,7 +70,7 @@ const products: Iproducts[] = [
     price: 52,
     currency: 'zł',
     rating: 4,
-    src: './public/img/EndsWithUs.jpg',
+    src: '/img/EndsWithUs.jpg',
     id: 8,
   },
   {
@@ -79,7 +79,7 @@ const products: Iproducts[] = [
     price: 87,
     currency: 'zł',
     rating: 5,
-    src: './public/img/HarryPotter.jpg',
+    src: '/img/HarryPotter.jpg',
     id: 9,
   },
   {
@@ -88,7 +88,7 @@ const products: Iproducts[] = [
     price: 75,
     currency: 'zł',
     rating: 4,
-    src: './public/img/FantasticBeasts.jpg',
+    src: '/img/FantasticBeasts.jpg',
     id: 10,
   },
   {
@@ -97,7 +97,7 @@ const products: Iproducts[] = [
     price: 50,
     currency: 'zł',
     rating: 4,
-    src: './public/img/DaisyJones.jpg',
+    src: '/img/DaisyJones.jpg',
     id: 11,
   },
   {
@@ -106,7 +106,7 @@ const products: Iproducts[] = [
     price: 52,
     currency: 'zł',
     rating: 4,
-    src: './public/img/EndsWithUs.jpg',
+    src: '/img/EndsWithUs.jpg',
     id: 12,
   },
 ];

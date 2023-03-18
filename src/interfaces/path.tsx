@@ -4,4 +4,4 @@ interface Ipath {
   index: number;
 }
 
-export { Ipath };
+export type { Ipath };
