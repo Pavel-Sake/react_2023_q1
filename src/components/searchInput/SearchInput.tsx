@@ -15,8 +15,20 @@ class SearchInput extends React.Component<MyProps, MyState> {
   };
 
   handleChangeInput = (e: React.FormEvent<HTMLInputElement>): void => {
+    localStorage.setItem('inputValue', this.state.text);
     this.setState({ text: e.currentTarget.value });
   };
+
+  componentDidMount() {
+    const inputValue = localStorage.getItem('inputValue');
+    if (inputValue) {
+      this.setState({ text: inputValue });
+    }
+  }
+
+  componentWillUnmount() {
+    localStorage.setItem('inputValue', this.state.text);
+  }
 
   render() {
     return (
