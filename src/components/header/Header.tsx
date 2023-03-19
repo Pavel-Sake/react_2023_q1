@@ -2,7 +2,6 @@ import React from 'react';
 import { SearchInput } from '../searchInput/SearchInput';
 import { SearchButton } from '../searchButton/SearchButton';
 import { Nav } from '../nav/Nav';
-import { Routes, Route, Link } from 'react-router-dom';
 
 import styles from './styles.module.css';
 import { Ipath } from '../../interfaces/path';

@@ -5,7 +5,7 @@ interface Iproducts {
   currency: string;
   rating: number;
   src: string;
-  id: number
+  id: number;
 }
 
 export type { Iproducts };
