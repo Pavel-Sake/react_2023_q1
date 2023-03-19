@@ -10,9 +10,6 @@ describe('Test App', () => {
 
     expect(input).toBeTruthy();
     expect(input).toHaveAttribute('placeholder', message);
-
-    // fireEvent.change(input, { target: { value: '$23.0' } });
-    // expect(input).toHaveValue('$23.0');
   });
 
   test('input event test', () => {

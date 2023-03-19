@@ -16,7 +16,7 @@ class Nav extends React.Component<PathProps, MyState> {
   render() {
     const { paths } = this.props;
     return (
-      <nav className={styles.nav}>
+      <nav className={styles.nav} data-testid="nav">
         <ul className={styles.navList}>
           {paths.map((path) => {
             return (

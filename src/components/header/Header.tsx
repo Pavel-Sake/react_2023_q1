@@ -14,7 +14,7 @@ interface PathProps {
 type MyState = {
   path: string | undefined;
 };
-function getPageLabel(text: string): string | undefined {
+export function getPageLabel(text: string): string | undefined {
   let label = 'Not found';
   if (text === '/') {
     label = 'Home';
@@ -49,7 +49,7 @@ class Header extends React.Component<PathProps, MyState> {
         <div className="container">
           <Nav paths={this.props.paths} changePageLabel={changePageLabel} />
           <div className={styles.searchBlock}>
-            <div>{this.state.path}</div>
+            <div data-testid="page-label">{this.state.path}</div>
             <SearchInput message="search" />
             <SearchButton number={34} />
           </div>

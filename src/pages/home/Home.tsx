@@ -15,13 +15,12 @@ class Home extends React.Component<MyProps, MyState> {
   render() {
     return (
       <div data-testid="home-page">
-        <ul className={styles.productList}>
+        <ul className={styles.productList} data-testid="product-list">
           {this.props.products.map((item) => {
             return <ItemProduct key={item.id} product={item} />;
           })}
         </ul>
       </div>
-
     );
   }
 }

@@ -1,8 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../App';
 import { MemoryRouter } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
 test('Router test', () => {
   render(
     <MemoryRouter>
@@ -10,13 +9,21 @@ test('Router test', () => {
     </MemoryRouter>
   );
 
-  const homePage = screen.getByTestId('home-page');
-  const aboutPage = screen.findByTestId('about-page');
   const links = screen.getAllByTestId('link');
 
-  userEvent.click(links[0]);
-  expect(homePage).toBeInTheDocument();
+  fireEvent.click(links[1]);
+  expect(screen.queryByTestId('about-page')).toBeInTheDocument();
 
-  userEvent.click(links[0]);
-  expect(homePage).toBeInTheDocument();
+  fireEvent.click(links[0]);
+  expect(screen.queryByTestId('home-page')).toBeInTheDocument();
+});
+
+test('Error page test', () => {
+  render(
+    <MemoryRouter initialEntries={['/usgdhsf']}>
+      <App />
+    </MemoryRouter>
+  );
+
+  expect(screen.queryByTestId('not-found-page')).toBeInTheDocument();
 });

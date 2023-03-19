@@ -14,7 +14,7 @@ class ItemProduct extends React.Component<MyProps, MyState> {
   render() {
     const { name, author, rating, price, currency, src } = this.props.product;
     return (
-      <li className={styles.item}>
+      <li className={styles.item} data-testid="product-item">
         <img className={styles.img} src={src} />
         <div>{name}</div>
         <div>{author}</div>

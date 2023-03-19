@@ -2,7 +2,7 @@ import React from 'react';
 import { Home } from './pages/home/Home';
 import { About } from './pages/about/About';
 import { NotFound } from './pages/notFound/NotFound';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { RootLayout } from './layout/RootLayout';
 
 import { paths } from './data/paths';
@@ -18,7 +18,6 @@ function App() {
           <Route path="*" element={<NotFound message="not found" />} />
         </Route>
       </Routes>
-      <div>learn react</div>
     </div>
   );
 }
