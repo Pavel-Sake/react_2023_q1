@@ -19,7 +19,9 @@ class Nav extends React.Component<PathProps, MyState> {
       <nav className={styles.nav}>
         <ul className={styles.navList}>
           {paths.map((path) => {
-            return <ItemLink path={path} key={path.index} changePageLabel={this.props.changePageLabel} />;
+            return (
+              <ItemLink path={path} key={path.index} changePageLabel={this.props.changePageLabel} />
+            );
           })}
         </ul>
       </nav>

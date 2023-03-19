@@ -14,7 +14,6 @@ interface PathProps {
 type MyState = {
   path: string | undefined;
 };
-
 function getPageLabel(text: string): string | undefined {
   let label = 'Not found';
   if (text === '/') {

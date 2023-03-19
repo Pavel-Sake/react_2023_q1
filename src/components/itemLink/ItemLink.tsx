@@ -20,6 +20,7 @@ class ItemLink extends React.Component<PathProps, MyState> {
       <li className={styles.itemLink}>
         <NavLink
           className={styles.link}
+          data-testid="link"
           to={path}
           onClick={() => {
             this.props.changePageLabel(path);

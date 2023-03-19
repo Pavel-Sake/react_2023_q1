@@ -23,6 +23,7 @@ class SearchInput extends React.Component<MyProps, MyState> {
       <>
         <input
           className={styles.input}
+          data-testid="searchInput"
           type="text"
           placeholder={this.props.message}
           value={this.state.text}
