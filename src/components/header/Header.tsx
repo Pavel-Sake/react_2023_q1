@@ -1,10 +1,10 @@
-import React from 'react';
-import { SearchInput } from '../searchInput/SearchInput';
-import { SearchButton } from '../searchButton/SearchButton';
-import { Nav } from '../nav/Nav';
+import React from "react";
+import { SearchInput } from "../searchInput/SearchInput";
+import { SearchButton } from "../searchButton/SearchButton";
+import { Nav } from "../nav/Nav";
 
-import styles from './styles.module.css';
-import { Ipath } from '../../interfaces/path';
+import styles from "./styles.module.css";
+import { Ipath } from "../../interfaces/path";
 
 interface PathProps {
   paths: Ipath[];
@@ -14,14 +14,14 @@ type MyState = {
   path: string | undefined;
 };
 export function getPageLabel(text: string): string | undefined {
-  let label = 'Not found';
-  if (text === '/') {
-    label = 'Home';
+  let label = "Not found";
+  if (text === "/") {
+    label = "Home";
     return label;
   }
 
-  if (text === '/about') {
-    label = 'About';
+  if (text === "/about") {
+    label = "About";
     return label;
   }
   return label;
@@ -29,7 +29,7 @@ export function getPageLabel(text: string): string | undefined {
 
 class Header extends React.Component<PathProps, MyState> {
   state: MyState = {
-    path: 'Home',
+    path: "Home",
   };
   componentDidMount() {
     const url = window.location.pathname;

@@ -1,8 +1,8 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Ipath } from '../../interfaces/path';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Ipath } from "../../interfaces/path";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 interface PathProps {
   path: Ipath;

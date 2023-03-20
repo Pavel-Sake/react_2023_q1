@@ -1,7 +1,7 @@
-import React from 'react';
-import { Iproducts } from '../../interfaces/products';
+import React from "react";
+import { Iproducts } from "../../interfaces/products";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 interface MyProps {
   product: Iproducts;
@@ -15,7 +15,7 @@ class ItemProduct extends React.Component<MyProps, MyState> {
     const { name, author, rating, price, currency, src } = this.props.product;
     return (
       <li className={styles.item} data-testid="product-item">
-        <img className={styles.img} src={src} />
+        <img className={styles.img} src={src} alt="img" />
         <div>{name}</div>
         <div>{author}</div>
         <div>{rating}</div>

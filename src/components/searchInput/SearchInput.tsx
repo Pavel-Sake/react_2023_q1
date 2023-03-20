@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './styles.module.css';
+import React from "react";
+import styles from "./styles.module.css";
 
 type MyProps = {
   message: string;
@@ -11,23 +11,23 @@ type MyState = {
 
 class SearchInput extends React.Component<MyProps, MyState> {
   state: MyState = {
-    text: '',
+    text: "",
   };
 
   handleChangeInput = (e: React.FormEvent<HTMLInputElement>): void => {
-    localStorage.setItem('inputValue', this.state.text);
+    localStorage.setItem("inputValue", this.state.text);
     this.setState({ text: e.currentTarget.value });
   };
 
   componentDidMount() {
-    const inputValue = localStorage.getItem('inputValue');
+    const inputValue = localStorage.getItem("inputValue");
     if (inputValue) {
       this.setState({ text: inputValue });
     }
   }
 
   componentWillUnmount() {
-    localStorage.setItem('inputValue', this.state.text);
+    localStorage.setItem("inputValue", this.state.text);
   }
 
   render() {

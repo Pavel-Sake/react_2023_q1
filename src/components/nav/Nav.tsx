@@ -1,8 +1,8 @@
-import React from 'react';
-import { ItemLink } from '../itemLink/ItemLink';
+import React from "react";
+import { ItemLink } from "../itemLink/ItemLink";
 
-import styles from './styles.module.css';
-import { Ipath } from '../../interfaces/path';
+import styles from "./styles.module.css";
+import { Ipath } from "../../interfaces/path";
 
 interface PathProps {
   paths: Ipath[];
@@ -20,7 +20,11 @@ class Nav extends React.Component<PathProps, MyState> {
         <ul className={styles.navList}>
           {paths.map((path) => {
             return (
-              <ItemLink path={path} key={path.index} changePageLabel={this.props.changePageLabel} />
+              <ItemLink
+                path={path}
+                key={path.index}
+                changePageLabel={this.props.changePageLabel}
+              />
             );
           })}
         </ul>

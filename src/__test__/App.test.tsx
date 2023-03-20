@@ -1,29 +1,29 @@
-import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
-import App from '../App';
-import { MemoryRouter } from 'react-router-dom';
-test('Router test', () => {
+import React from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import App from "../App";
+import { MemoryRouter } from "react-router-dom";
+test("Router test", () => {
   render(
     <MemoryRouter>
       <App />
     </MemoryRouter>
   );
 
-  const links = screen.getAllByTestId('link');
+  const links = screen.getAllByTestId("link");
 
   fireEvent.click(links[1]);
-  expect(screen.queryByTestId('about-page')).toBeInTheDocument();
+  expect(screen.queryByTestId("about-page")).toBeInTheDocument();
 
   fireEvent.click(links[0]);
-  expect(screen.queryByTestId('home-page')).toBeInTheDocument();
+  expect(screen.queryByTestId("home-page")).toBeInTheDocument();
 });
 
-test('Error page test', () => {
+test("Error page test", () => {
   render(
-    <MemoryRouter initialEntries={['/usgdhsf']}>
+    <MemoryRouter initialEntries={["/usgdhsf"]}>
       <App />
     </MemoryRouter>
   );
 
-  expect(screen.queryByTestId('not-found-page')).toBeInTheDocument();
+  expect(screen.queryByTestId("not-found-page")).toBeInTheDocument();
 });

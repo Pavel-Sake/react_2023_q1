@@ -1,12 +1,13 @@
-import React from 'react';
-import { Home } from './pages/home/Home';
-import { About } from './pages/about/About';
-import { NotFound } from './pages/notFound/NotFound';
-import { Routes, Route } from 'react-router-dom';
-import { RootLayout } from './layout/RootLayout';
+import React from "react";
+import { Home } from "./pages/home/Home";
+import { About } from "./pages/about/About";
+import { FormPage } from "./pages/formPage/FormPage";
+import { NotFound } from "./pages/notFound/NotFound";
+import { Routes, Route } from "react-router-dom";
+import { RootLayout } from "./layout/RootLayout";
 
-import { paths } from './data/paths';
-import { products } from './data/products';
+import { paths } from "./data/paths";
+import { products } from "./data/products";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<RootLayout paths={paths} />}>
           <Route index element={<Home products={products} />} />
           <Route path="/about" element={<About message="dfdf" />} />
+          <Route path="/form" element={<FormPage message="dfdf" />} />
           <Route path="*" element={<NotFound message="not found" />} />
         </Route>
       </Routes>

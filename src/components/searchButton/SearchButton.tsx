@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './steles.module.css';
+import React from "react";
+import styles from "./steles.module.css";
 
 type MyProps = {
   number: number;

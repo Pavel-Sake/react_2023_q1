@@ -1,23 +1,23 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from "@testing-library/react";
 
-import { SearchInput } from '../components/searchInput/SearchInput';
+import { SearchInput } from "../components/searchInput/SearchInput";
 
-describe('Test App', () => {
-  test('input test', () => {
-    const message = 'search';
+describe("Test App", () => {
+  test("input test", () => {
+    const message = "search";
     render(<SearchInput message={message} />);
-    const input = screen.getByTestId('searchInput');
+    const input = screen.getByTestId("searchInput");
 
     expect(input).toBeTruthy();
-    expect(input).toHaveAttribute('placeholder', message);
+    expect(input).toHaveAttribute("placeholder", message);
   });
 
-  test('input event test', () => {
-    const message = 'search';
+  test("input event test", () => {
+    const message = "search";
     render(<SearchInput message={message} />);
-    const input = screen.getByTestId('searchInput');
+    const input = screen.getByTestId("searchInput");
 
-    fireEvent.change(input, { target: { value: '$23.0' } });
-    expect(input).toHaveValue('$23.0');
+    fireEvent.change(input, { target: { value: "$23.0" } });
+    expect(input).toHaveValue("$23.0");
   });
 });
