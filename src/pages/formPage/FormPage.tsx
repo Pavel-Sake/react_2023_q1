@@ -12,7 +12,7 @@ class FormPage extends React.Component<MyProps, MyState> {
   render() {
     return (
       <>
-        <Form message="ddd" />
+        <Form message="" />
       </>
     );
   }

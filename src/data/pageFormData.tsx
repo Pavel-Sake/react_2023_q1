@@ -3,13 +3,13 @@ import { IPageFormData } from "../interfaces/IPageFormData";
 const pageFormData: IPageFormData = {
   name: {
     type: "text",
-    label: "name",
+    label: "Name",
     name: "name",
     value: "",
   },
   surname: {
     type: "text",
-    label: "surname",
+    label: "Surname",
     name: "surname",
     value: "",
   },
@@ -46,6 +46,7 @@ const pageFormData: IPageFormData = {
         id: 6,
       },
     ],
+    keyWord: "country",
   },
   gender: [
     {

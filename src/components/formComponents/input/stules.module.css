@@ -1,0 +1,13 @@
+.label {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-size: 14px;
+}
+
+.input {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}

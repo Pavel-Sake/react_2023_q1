@@ -15,17 +15,17 @@ class Radio extends React.Component<MyProps, MyState> {
     const { gender } = this.props;
     return (
       <div>
-        {gender.map((item, index) => {
-          return (
-            <Input
-              type={item.type}
-              label={item.label}
-              name={item.name}
-              value={item.value}
-              key={index}
-            />
-          );
-        })}
+        {/*{gender.map((item, index) => {*/}
+        {/*  return (*/}
+        {/*    <Input*/}
+        {/*      type={item.type}*/}
+        {/*      label={item.label}*/}
+        {/*      name={item.name}*/}
+        {/*      value={item.value}*/}
+        {/*      key={index}*/}
+        {/*    />*/}
+        {/*  );*/}
+        {/*})}*/}
       </div>
     );
   }

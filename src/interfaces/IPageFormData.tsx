@@ -16,6 +16,7 @@ interface IPageFormData {
   date: IInput;
   countries: {
     option: IOption[];
+    keyWord: string;
   };
   gender: IInput[];
   consent: IInput;

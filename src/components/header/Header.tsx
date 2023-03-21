@@ -24,6 +24,10 @@ export function getPageLabel(text: string): string | undefined {
     label = "About";
     return label;
   }
+  if (text === "/form") {
+    label = "Form";
+    return label;
+  }
   return label;
 }
 
