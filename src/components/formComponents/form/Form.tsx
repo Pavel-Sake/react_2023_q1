@@ -11,78 +11,64 @@ type MyProps = {
   message: string;
 };
 
-// later extract into separate block
-type MyState = {
-  name: string | undefined;
-  surname: string | undefined;
-  birthday: string | undefined;
-  country: string | undefined;
-};
+type StrAndUnd = string | undefined;
 
-const cardData: MyState = {
-  name: "",
-  surname: "",
-  birthday: "",
-  country: "",
+type MyState = {
+  name: StrAndUnd;
+  surname: StrAndUnd;
+  birthday: StrAndUnd;
+  country: StrAndUnd;
+  gender: StrAndUnd;
+  consent: boolean | undefined;
 };
 
 class Form extends React.Component<MyProps | Readonly<MyProps>, MyState> {
   constructor(props: MyProps) {
     super(props);
 
-    // this.state = {
-    //   name: "",
-    // };
+    this.state = {
+      name: "",
+      surname: "",
+      birthday: "",
+      country: "",
+      gender: "",
+      consent: false,
+    };
   }
 
-  handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  handleSubmit =(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    console.log(this.state);
   }
 
-  changeState(text: string | undefined, key: string): void {
-    cardData[key as keyof typeof cardData] = text;
-  }
+  changeState = (value: string | undefined, key: string): void => {
+   const currentObjState: any = {}
+    currentObjState[key] = value
+    this.setState({...currentObjState})
+  };
   render() {
-    const { name, surname, date, countries, gender, consent } = pageFormData;
+    const { name, surname, birthday, countries, gender, consent } = pageFormData;
 
     return (
       <form className={styles.form} onSubmit={this.handleSubmit}>
         <fieldset className={styles.fieldset}>
           <legend className={styles.legend}>Card</legend>
-          <Input
-            type={name.type}
-            label={name.label}
-            name={name.name}
-            value={name.value}
-            changeState={this.changeState}
-          />
-          <Input
-            type={surname.type}
-            label={surname.label}
-            name={surname.name}
-            value={surname.value}
+          <Input data={name} changeState={this.changeState} />
+          <Input data={surname} changeState={this.changeState} />
+          <hr />
+          <Input data={birthday} changeState={this.changeState} />
+          <hr />
+          <Select
+            countries={countries.option}
+            keyWord={countries.keyWord}
             changeState={this.changeState}
           />
           <hr />
-          <Input
-            type={date.type}
-            label={date.label}
-            name={date.name}
-            value={date.value}
-            changeState={this.changeState}
-          />
+          <Radio gender={gender} changeState={this.changeState} />
           <hr />
-          <Select countries={countries.option} keyWord={countries.keyWord} changeState={this.changeState}/>
-          <hr />
-          <Radio gender={gender} />
-          <hr />
-          {/*<input type="file" accept="image/jpeg, image/png, image/jpg" />*/}
-          {/*<Input*/}
-          {/*  type={consent.type}*/}
-          {/*  label={consent.label}*/}
-          {/*  name={consent.name}*/}
-          {/*  value={consent.value}*/}
-          {/*/>*/}
+          <input type="file" accept="image/jpeg, image/png, image/jpg" />
+          <Input data={consent} changeState={this.changeState} />
           <Button name="click" />
         </fieldset>
       </form>

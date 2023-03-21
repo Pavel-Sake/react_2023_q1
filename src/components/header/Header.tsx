@@ -14,6 +14,7 @@ type MyState = {
   path: string | undefined;
 };
 export function getPageLabel(text: string): string | undefined {
+  //cardData[key as keyof typeof cardData] = text;
   let label = "Not found";
   if (text === "/") {
     label = "Home";

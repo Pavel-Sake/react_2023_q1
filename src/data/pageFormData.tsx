@@ -6,18 +6,21 @@ const pageFormData: IPageFormData = {
     label: "Name",
     name: "name",
     value: "",
+    keyWord: "name",
   },
   surname: {
     type: "text",
     label: "Surname",
     name: "surname",
     value: "",
+    keyWord: "surname",
   },
-  date: {
+  birthday: {
     type: "date",
     label: "birthday",
     name: "birthday",
     value: "",
+    keyWord: "birthday",
   },
   countries: {
     option: [
@@ -54,12 +57,14 @@ const pageFormData: IPageFormData = {
       label: "male",
       name: "gender",
       value: "male",
+      keyWord: "gender",
     },
     {
       type: "radio",
       label: "female",
       name: "gender",
       value: "female",
+      keyWord: "gender",
     },
   ],
   consent: {
@@ -67,6 +72,7 @@ const pageFormData: IPageFormData = {
     label: "I consent to my personal data field",
     name: "checkboxNmae",
     value: "checkboxValue",
+    keyWord: "consent",
   },
 };
 

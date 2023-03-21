@@ -3,6 +3,7 @@ interface IInput {
   label: string;
   name: string;
   value: string;
+  keyWord: string;
 }
 
 interface IOption {
@@ -13,7 +14,7 @@ interface IOption {
 interface IPageFormData {
   name: IInput;
   surname: IInput;
-  date: IInput;
+  birthday: IInput;
   countries: {
     option: IOption[];
     keyWord: string;
