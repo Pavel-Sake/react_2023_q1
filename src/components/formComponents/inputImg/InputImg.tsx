@@ -1,15 +1,11 @@
 import React from "react";
 import { IInput } from "../../../interfaces/IPageFormData";
 
-
 type MyProps = {
   updateStateImg: (file: object) => void;
 };
 
-type MyState = {};
-
-
-class InputImg extends React.Component<MyProps, MyState> {
+class InputImg extends React.Component<MyProps> {
   private readonly fileRef: React.RefObject<HTMLInputElement>;
 
   constructor(props: MyProps) {

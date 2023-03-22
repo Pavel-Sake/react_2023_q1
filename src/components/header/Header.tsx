@@ -13,23 +13,20 @@ interface PathProps {
 type MyState = {
   path: string | undefined;
 };
-export function getPageLabel(text: string): string | undefined {
-  //cardData[key as keyof typeof cardData] = text;
-  let label = "Not found";
-  if (text === "/") {
-    label = "Home";
-    return label;
-  }
 
-  if (text === "/about") {
-    label = "About";
+const pathLibrary = {
+  "/": "Home",
+  "/about": "About",
+  "/form": "Form",
+};
+export function getPageLabel(text: string): string | undefined {
+  const label = pathLibrary[text as keyof typeof pathLibrary];
+
+  if (label) {
     return label;
+  } else {
+    return "Not found";
   }
-  if (text === "/form") {
-    label = "Form";
-    return label;
-  }
-  return label;
 }
 
 class Header extends React.Component<PathProps, MyState> {

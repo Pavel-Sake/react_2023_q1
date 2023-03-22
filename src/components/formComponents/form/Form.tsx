@@ -24,11 +24,6 @@ type MyState = {
   file: object
 };
 
-type FileData = {
-  name: string;
-  size: string;
-  file: object
-}
 
 class Form extends React.Component<MyProps | Readonly<MyProps>, MyState> {
   constructor(props: MyProps) {
@@ -41,11 +36,7 @@ class Form extends React.Component<MyProps | Readonly<MyProps>, MyState> {
       country: "",
       gender: "",
       consent: "false",
-      file: {
-        name: "",
-        size: null,
-        file: null
-      },
+      file: {}
     };
   }
 
