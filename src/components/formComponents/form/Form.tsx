@@ -4,6 +4,7 @@ import { Select } from "../select/Select";
 import { Radio } from "../radio/Radio";
 import { Button } from "../button/Button";
 import { pageFormData } from "../../../data/pageFormData";
+import { InputImg } from "../inputImg/InputImg";
 
 import styles from "./styles.module.css";
 
@@ -19,8 +20,15 @@ type MyState = {
   birthday: StrAndUnd;
   country: StrAndUnd;
   gender: StrAndUnd;
-  consent: boolean | undefined;
+  consent: StrAndUnd;
+  file: object
 };
+
+type FileData = {
+  name: string;
+  size: string;
+  file: object
+}
 
 class Form extends React.Component<MyProps | Readonly<MyProps>, MyState> {
   constructor(props: MyProps) {
@@ -32,23 +40,33 @@ class Form extends React.Component<MyProps | Readonly<MyProps>, MyState> {
       birthday: "",
       country: "",
       gender: "",
-      consent: false,
+      consent: "false",
+      file: {
+        name: "",
+        size: null,
+        file: null
+      },
     };
   }
 
-  handleSubmit =(e: React.FormEvent<HTMLFormElement>) => {
+  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log(this.state);
-  }
+  };
 
   changeState = (value: string | undefined, key: string): void => {
-   const currentObjState: any = {}
-    currentObjState[key] = value
-    this.setState({...currentObjState})
+    const currentObjState: any = {};
+    currentObjState[key] = value;
+    this.setState({ ...currentObjState });
   };
+
+  updateStateImg = (file: object) => {
+    this.setState({file: file})
+  }
   render() {
-    const { name, surname, birthday, countries, gender, consent } = pageFormData;
+    const { name, surname, birthday, countries, gender, consent } =
+      pageFormData;
 
     return (
       <form className={styles.form} onSubmit={this.handleSubmit}>
@@ -67,7 +85,8 @@ class Form extends React.Component<MyProps | Readonly<MyProps>, MyState> {
           <hr />
           <Radio gender={gender} changeState={this.changeState} />
           <hr />
-          <input type="file" accept="image/jpeg, image/png, image/jpg" />
+          <InputImg updateStateImg={this.updateStateImg}/>
+          {/*{this.state.file ? <img src={this.state.file} /> : null}*/}
           <Input data={consent} changeState={this.changeState} />
           <Button name="click" />
         </fieldset>
