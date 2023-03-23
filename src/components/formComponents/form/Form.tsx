@@ -5,45 +5,65 @@ import { Radio } from "../radio/Radio";
 import { Button } from "../button/Button";
 import { pageFormData } from "../../../data/pageFormData";
 import { InputImg } from "../inputImg/InputImg";
+import { validation } from "../../../formValidation/validation";
 
 import styles from "./styles.module.css";
 
+import { IStateForForm } from "../../../interfaces/IStateForForm";
+
 type MyProps = {
-  message: string;
+  message?: string;
 };
 
-type StrAndUnd = string | undefined;
-
-type MyState = {
-  name: StrAndUnd;
-  surname: StrAndUnd;
-  birthday: StrAndUnd;
-  country: StrAndUnd;
-  gender: StrAndUnd;
-  consent: StrAndUnd;
-  file: object
+const itintialState = {
+  name: "",
+  surname: "",
+  birthday: "",
+  country: "",
+  gender: "",
+  consent: "false",
+  file: {},
+  errorData: {
+    name: {
+      isValid: false,
+      errorText: "",
+    },
+    surname: {
+      isValid: false,
+      errorText: "",
+    },
+    birthday: {
+      isValid: false,
+      errorText: "",
+    },
+    country: {
+      isValid: false,
+      errorText: "",
+    },
+    gender: {
+      isValid: false,
+      errorText: "",
+    },
+    consent: {
+      isValid: false,
+      errorText: "",
+    },
+  },
 };
 
-
-class Form extends React.Component<MyProps | Readonly<MyProps>, MyState> {
+class Form extends React.Component<MyProps, IStateForForm> {
   constructor(props: MyProps) {
     super(props);
-
-    this.state = {
-      name: "",
-      surname: "",
-      birthday: "",
-      country: "",
-      gender: "",
-      consent: "false",
-      file: {}
-    };
+    this.state = itintialState;
   }
 
   handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(this.state);
+    const errorValidationData = validation(this.state);
+    this.setState({ errorData: errorValidationData });
+
+    console.log(errorValidationData);
   };
 
   changeState = (value: string | undefined, key: string): void => {
@@ -53,32 +73,50 @@ class Form extends React.Component<MyProps | Readonly<MyProps>, MyState> {
   };
 
   updateStateImg = (file: object) => {
-    this.setState({file: file})
-  }
+    this.setState({ file: file });
+  };
   render() {
     const { name, surname, birthday, countries, gender, consent } =
       pageFormData;
+
+    const { errorData } = this.state;
 
     return (
       <form className={styles.form} onSubmit={this.handleSubmit}>
         <fieldset className={styles.fieldset}>
           <legend className={styles.legend}>Card</legend>
-          <Input data={name} changeState={this.changeState} />
-          <Input data={surname} changeState={this.changeState} />
-          <hr />
-          <Input data={birthday} changeState={this.changeState} />
-          <hr />
-          <Select
-            countries={countries.option}
-            keyWord={countries.keyWord}
+          <Input
+            data={name}
             changeState={this.changeState}
+            errorData={errorData.name}
+          />
+          <Input
+            data={surname}
+            changeState={this.changeState}
+            errorData={errorData.surname}
           />
           <hr />
-          <Radio gender={gender} changeState={this.changeState} />
+          <Input
+            data={birthday}
+            changeState={this.changeState}
+            errorData={errorData.birthday}
+          />
           <hr />
-          <InputImg updateStateImg={this.updateStateImg}/>
-          {/*{this.state.file ? <img src={this.state.file} /> : null}*/}
-          <Input data={consent} changeState={this.changeState} />
+          <Select
+            data={countries}
+            changeState={this.changeState}
+            errorData={errorData.country}
+          />
+          <hr />
+          <Radio
+            data={gender}
+            changeState={this.changeState}
+            errorData={errorData.gender}
+          />
+          <hr />
+          {/*<InputImg updateStateImg={this.updateStateImg} />*/}
+          {/*/!*{this.state.file ? <img src={this.state.file} /> : null}*!/*/}
+          <Input data={consent} changeState={this.changeState}  errorData={errorData.consent} />
           <Button name="click" />
         </fieldset>
       </form>
