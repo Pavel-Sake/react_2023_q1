@@ -6,6 +6,7 @@ import { Button } from "../button/Button";
 import { pageFormData } from "../../../data/pageFormData";
 import { InputImg } from "../inputImg/InputImg";
 import { validation } from "../../../formValidation/validation";
+import {checkCreatingCard} from "../../../formValidation/validationCreatingCard";
 
 import styles from "./styles.module.css";
 
@@ -49,6 +50,7 @@ const itintialState = {
       errorText: "",
     },
   },
+  isAllFieldsValid: false,
 };
 
 class Form extends React.Component<MyProps, IStateForForm> {
@@ -61,10 +63,13 @@ class Form extends React.Component<MyProps, IStateForForm> {
     e.preventDefault();
 
     const errorValidationData = validation(this.state);
-    this.setState({ errorData: errorValidationData });
-
-    console.log(this.state);
+    this.setState({ errorData: errorValidationData }, () => {
+      const isAllFieldsValid = checkCreatingCard(this.state.errorData)
+      this.setState({isAllFieldsValid: isAllFieldsValid})
+    });
   };
+
+
 
   changeState = (value: string | undefined, key: string): void => {
     const currentObjState: any = {};
@@ -95,25 +100,21 @@ class Form extends React.Component<MyProps, IStateForForm> {
             changeState={this.changeState}
             errorData={errorData.surname}
           />
-          {/*<hr />*/}
           <Input
             data={birthday}
             changeState={this.changeState}
             errorData={errorData.birthday}
           />
-          {/*<hr />*/}
           <Select
             data={countries}
             changeState={this.changeState}
             errorData={errorData.country}
           />
-          {/*<hr />*/}
           <Radio
             data={gender}
             changeState={this.changeState}
             errorData={errorData.gender}
           />
-          {/*<hr />*/}
           <InputImg updateStateImg={this.updateStateImg} />
           {/*/!*{this.state.file ? <img src={this.state.file} /> : null}*!/*/}
           <Input data={consent} changeState={this.changeState}  errorData={errorData.consent} />

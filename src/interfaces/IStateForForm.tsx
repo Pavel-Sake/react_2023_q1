@@ -6,12 +6,16 @@ type DataValid = {
 };
 
 type DataError = {
-  consent: { isValid: boolean | null | undefined; errorText: string | undefined; } | undefined;
-  gender: { isValid: boolean | null | undefined; errorText: string | undefined; } | undefined;
+  consent:
+    | { isValid: boolean | null | undefined; errorText: string | undefined }
+    | undefined;
+  gender:
+    | { isValid: boolean | null | undefined; errorText: string | undefined }
+    | undefined;
   name: DataValid;
   surname: DataValid;
   birthday: DataValid;
-  country: DataValid
+  country: DataValid;
 };
 interface IStateForForm {
   name: StrAndUnd;
@@ -22,6 +26,7 @@ interface IStateForForm {
   consent: StrAndUnd;
   file: object;
   errorData: DataError;
+  isAllFieldsValid: boolean;
 }
 
-export type { IStateForForm };
+export type { IStateForForm, DataError };
