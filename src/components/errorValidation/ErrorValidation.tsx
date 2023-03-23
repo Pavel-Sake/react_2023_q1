@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./styles.module.css";
 
 type MyProps = {
   text: string | undefined;
@@ -7,7 +8,15 @@ type MyProps = {
 class ErrorValidation extends React.Component<MyProps> {
   render() {
     const { text, isValid } = this.props;
-    return <>{!isValid ? <div>{text}</div> : null}</>;
+    return (
+      <>
+        {!isValid ? (
+          <div className={styles.textError}>{text}</div>
+        ) : (
+          <div className={styles.space}></div>
+        )}
+      </>
+    );
   }
 }
 

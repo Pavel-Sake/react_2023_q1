@@ -63,7 +63,7 @@ class Form extends React.Component<MyProps, IStateForForm> {
     const errorValidationData = validation(this.state);
     this.setState({ errorData: errorValidationData });
 
-    console.log(errorValidationData);
+    console.log(this.state);
   };
 
   changeState = (value: string | undefined, key: string): void => {
@@ -95,26 +95,26 @@ class Form extends React.Component<MyProps, IStateForForm> {
             changeState={this.changeState}
             errorData={errorData.surname}
           />
-          <hr />
+          {/*<hr />*/}
           <Input
             data={birthday}
             changeState={this.changeState}
             errorData={errorData.birthday}
           />
-          <hr />
+          {/*<hr />*/}
           <Select
             data={countries}
             changeState={this.changeState}
             errorData={errorData.country}
           />
-          <hr />
+          {/*<hr />*/}
           <Radio
             data={gender}
             changeState={this.changeState}
             errorData={errorData.gender}
           />
-          <hr />
-          {/*<InputImg updateStateImg={this.updateStateImg} />*/}
+          {/*<hr />*/}
+          <InputImg updateStateImg={this.updateStateImg} />
           {/*/!*{this.state.file ? <img src={this.state.file} /> : null}*!/*/}
           <Input data={consent} changeState={this.changeState}  errorData={errorData.consent} />
           <Button name="click" />

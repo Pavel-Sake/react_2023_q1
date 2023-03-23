@@ -53,7 +53,7 @@ class Input extends React.Component<MyProps, MyState> {
     const { isValid, errorText } = this.props.errorData!;
 
     return (
-      <div>
+      <div className={styles.container}>
         <label className={styles.label}>
           <input
             className={styles.input}
@@ -70,8 +70,10 @@ class Input extends React.Component<MyProps, MyState> {
           />
           {label}
         </label>
-        {/*{!isValid ? <div>{errorText}</div> : null}*/}
-        <ErrorValidation text={errorText} isValid={isValid} />
+
+        {type === "radio" ? null : (
+          <ErrorValidation text={errorText} isValid={isValid} />
+        )}
       </div>
     );
   }
