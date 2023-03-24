@@ -69,8 +69,6 @@ class Form extends React.Component<MyProps, IStateForForm> {
     });
   };
 
-
-
   changeState = (value: string | undefined, key: string): void => {
     const currentObjState: any = {};
     currentObjState[key] = value;
