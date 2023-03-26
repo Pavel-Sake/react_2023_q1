@@ -6,24 +6,26 @@ import { Button } from "../button/Button";
 import { pageFormData } from "../../../data/pageFormData";
 import { InputImg } from "../inputImg/InputImg";
 import { validation } from "../../../formValidation/validation";
-import {checkCreatingCard} from "../../../formValidation/validationCreatingCard";
+import { checkCreatingCard } from "../../../formValidation/validationCreatingCard";
 
 import styles from "./styles.module.css";
 
-import { IStateForForm } from "../../../interfaces/IStateForForm";
+import { IStateForForm, IDataFromForm } from "../../../interfaces/IStateForForm";
 
 type MyProps = {
-  message?: string;
+  changeStateAddCard: (dataFromForm: IDataFromForm) => void;
 };
 
 const itintialState = {
-  name: "",
-  surname: "",
-  birthday: "",
-  country: "",
-  gender: "",
-  consent: "false",
-  file: {},
+  dataFromForm: {
+    name: "",
+    surname: "",
+    birthday: "",
+    country: "",
+    gender: "",
+    consent: "false",
+    file: null
+  },
   errorData: {
     name: {
       isValid: false,
@@ -62,21 +64,28 @@ class Form extends React.Component<MyProps, IStateForForm> {
   handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const errorValidationData = validation(this.state);
+    const errorValidationData = validation(this.state.dataFromForm);
     this.setState({ errorData: errorValidationData }, () => {
-      const isAllFieldsValid = checkCreatingCard(this.state.errorData)
-      this.setState({isAllFieldsValid: isAllFieldsValid})
+      const { errorData, dataFromForm } = this.state;
+      const isAllFieldsValid = checkCreatingCard(errorData);
+      this.setState({ isAllFieldsValid: isAllFieldsValid }); //delete later
+
+      if (isAllFieldsValid) {
+        this.props.changeStateAddCard(dataFromForm);
+      }
     });
   };
 
   changeState = (value: string | undefined, key: string): void => {
+    const { dataFromForm } = this.state;
     const currentObjState: any = {};
     currentObjState[key] = value;
-    this.setState({ ...currentObjState });
+    this.setState({dataFromForm: {...dataFromForm, ...currentObjState } });
   };
 
   updateStateImg = (file: object) => {
-    this.setState({ file: file });
+    const { dataFromForm } = this.state;
+    this.setState({ dataFromForm: { ...dataFromForm, file: file } });
   };
   render() {
     const { name, surname, birthday, countries, gender, consent } =
@@ -115,7 +124,11 @@ class Form extends React.Component<MyProps, IStateForForm> {
           />
           <InputImg updateStateImg={this.updateStateImg} />
           {/*/!*{this.state.file ? <img src={this.state.file} /> : null}*!/*/}
-          <Input data={consent} changeState={this.changeState}  errorData={errorData.consent} />
+          <Input
+            data={consent}
+            changeState={this.changeState}
+            errorData={errorData.consent}
+          />
           <Button name="click" />
         </fieldset>
       </form>

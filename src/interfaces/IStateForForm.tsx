@@ -17,16 +17,19 @@ type DataError = {
   birthday: DataValid;
   country: DataValid;
 };
-interface IStateForForm {
+interface IDataFromForm {
   name: StrAndUnd;
   surname: StrAndUnd;
   birthday: StrAndUnd;
   country: StrAndUnd;
   gender: StrAndUnd;
   consent: StrAndUnd;
-  file: object;
+  file: object | null;
+}
+interface IStateForForm {
+  dataFromForm: IDataFromForm;
   errorData: DataError;
   isAllFieldsValid: boolean;
 }
 
-export type { IStateForForm, DataError };
+export type { IStateForForm, DataError, IDataFromForm };

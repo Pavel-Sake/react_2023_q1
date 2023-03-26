@@ -1,4 +1,4 @@
-import { IStateForForm } from "../interfaces/IStateForForm";
+import { IDataFromForm, IStateForForm } from "../interfaces/IStateForForm";
 
 const textError = {
   name: "Fist Letter must be capital and english",
@@ -84,7 +84,7 @@ function getObjError(name: string | undefined, text: string, type: string) {
   };
 }
 
-function validation(dataCard: IStateForForm) {
+function validation(dataCard: IDataFromForm) {
   const { name, surname, birthday, country, gender, consent } = dataCard;
 
   const nameValidData = getObjError(name, textError.name, typeValidation.name);
@@ -123,4 +123,5 @@ function validation(dataCard: IStateForForm) {
     consent: consentValidData,
   };
 }
+
 export { validation };
