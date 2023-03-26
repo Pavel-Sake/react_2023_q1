@@ -1,4 +1,4 @@
-import React from "react";
+import React, { RefObject } from "react";
 import { Input } from "../input/Input";
 import { IInput } from "../../../interfaces/IPageFormData";
 import { ErrorValidation } from "../../errorValidation/ErrorValidation";
@@ -10,6 +10,7 @@ type MyProps = {
     isValid: boolean | null | undefined;
     errorText: string | undefined;
   };
+  addElementToState: (element: RefObject<HTMLInputElement>) => void;
 };
 
 type MyState = {
@@ -34,6 +35,7 @@ class Radio extends React.Component<MyProps, MyState> {
                 key={index}
                 changeState={this.props.changeState}
                 errorData={this.errorDataNoError}
+                addElementToState={this.props.addElementToState}
               />
             );
           })}

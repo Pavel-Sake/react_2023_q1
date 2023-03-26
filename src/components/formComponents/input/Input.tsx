@@ -1,4 +1,4 @@
-import React from "react";
+import React, { RefObject } from "react";
 import styles from "./stules.module.css";
 import { IInput } from "../../../interfaces/IPageFormData";
 import { ErrorValidation } from "../../errorValidation/ErrorValidation";
@@ -17,6 +17,7 @@ type MyProps = {
     isValid: boolean | null | undefined;
     errorText: string | undefined;
   };
+  addElementToState: (element: RefObject<HTMLInputElement>) => void;
 };
 
 type MyState = {
@@ -45,8 +46,11 @@ class Input extends React.Component<MyProps, MyState> {
     };
 
     const valueResult = typesLibrary[type as keyof typeof typesLibrary];
-
     this.props.changeState(valueResult, keyWord);
+  };
+
+  componentDidMount = () => {
+    this.props.addElementToState(this.nameRef);
   };
   render() {
     const { type, label, name, keyWord, value } = this.props.data;

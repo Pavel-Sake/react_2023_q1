@@ -70,7 +70,7 @@ const pageFormData: IPageFormData = {
   consent: {
     type: "checkbox",
     label: "I consent to my personal data field",
-    name: "checkboxNmae",
+    name: "consent",
     value: "checkboxValue",
     keyWord: "consent",
   },

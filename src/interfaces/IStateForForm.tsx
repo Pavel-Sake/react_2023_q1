@@ -1,3 +1,5 @@
+import { RefObject } from "react";
+
 type StrAndUnd = string | undefined;
 
 type DataValid = {
@@ -30,6 +32,7 @@ interface IStateForForm {
   dataFromForm: IDataFromForm;
   errorData: DataError;
   isAllFieldsValid: boolean;
+  elements: RefObject<HTMLInputElement>[];
 }
 
 export type { IStateForForm, DataError, IDataFromForm };

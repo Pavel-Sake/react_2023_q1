@@ -30,7 +30,7 @@ class FormPage extends React.Component<MyProps, MyState> {
 
     setTimeout(() => {
       this.setState({ isNotification: false });
-    }, 500)
+    }, 500);
   };
   render() {
     return (

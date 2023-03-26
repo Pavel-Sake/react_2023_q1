@@ -1,11 +1,10 @@
 import React from "react";
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 
 type MyProps = {
-  message?: ""
-}
+  message?: "";
+};
 class Notification extends React.Component<MyProps> {
-
   render() {
     return (
       <div className={styles.overlay}>
@@ -15,5 +14,4 @@ class Notification extends React.Component<MyProps> {
   }
 }
 
-
-export {Notification}
+export { Notification };

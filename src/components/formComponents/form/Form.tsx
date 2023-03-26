@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler } from "react";
+import React, { ChangeEvent, ChangeEventHandler, RefObject } from "react";
 import { Input } from "../input/Input";
 import { Select } from "../select/Select";
 import { Radio } from "../radio/Radio";
@@ -10,7 +10,10 @@ import { checkCreatingCard } from "../../../formValidation/validationCreatingCar
 
 import styles from "./styles.module.css";
 
-import { IStateForForm, IDataFromForm } from "../../../interfaces/IStateForForm";
+import {
+  IStateForForm,
+  IDataFromForm,
+} from "../../../interfaces/IStateForForm";
 
 type MyProps = {
   changeStateAddCard: (dataFromForm: IDataFromForm) => void;
@@ -24,7 +27,7 @@ const itintialState = {
     country: "",
     gender: "",
     consent: "false",
-    file: null
+    file: null,
   },
   errorData: {
     name: {
@@ -53,6 +56,7 @@ const itintialState = {
     },
   },
   isAllFieldsValid: false,
+  elements: [],
 };
 
 class Form extends React.Component<MyProps, IStateForForm> {
@@ -63,7 +67,6 @@ class Form extends React.Component<MyProps, IStateForForm> {
 
   handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const errorValidationData = validation(this.state.dataFromForm);
     this.setState({ errorData: errorValidationData }, () => {
       const { errorData, dataFromForm } = this.state;
@@ -71,6 +74,22 @@ class Form extends React.Component<MyProps, IStateForForm> {
       this.setState({ isAllFieldsValid: isAllFieldsValid }); //delete later
 
       if (isAllFieldsValid) {
+        // this.state.elements.forEach((item) => {
+        //   if (item.current?.name === "name") {
+        //     item.current.value = "";
+        //   } else if (item.current?.name === "surname") {
+        //     item.current.value = "";
+        //   } else if (item.current?.name === "birthday") {
+        //     item.current.value = "";
+        //   } else if (item.current?.name === "gender") {
+        //     item.current.checked = false;
+        //   } else if (item.current?.name === "consent") {
+        //     item.current.checked = false;
+        //   }
+        // });
+
+        this.setState({});
+
         this.props.changeStateAddCard(dataFromForm);
       }
     });
@@ -80,12 +99,16 @@ class Form extends React.Component<MyProps, IStateForForm> {
     const { dataFromForm } = this.state;
     const currentObjState: any = {};
     currentObjState[key] = value;
-    this.setState({dataFromForm: {...dataFromForm, ...currentObjState } });
+    this.setState({ dataFromForm: { ...dataFromForm, ...currentObjState } });
   };
 
   updateStateImg = (file: object) => {
     const { dataFromForm } = this.state;
     this.setState({ dataFromForm: { ...dataFromForm, file: file } });
+  };
+
+  addElementToState = (element: RefObject<HTMLInputElement>): void => {
+    this.state.elements.push(element);
   };
   render() {
     const { name, surname, birthday, countries, gender, consent } =
@@ -101,16 +124,19 @@ class Form extends React.Component<MyProps, IStateForForm> {
             data={name}
             changeState={this.changeState}
             errorData={errorData.name}
+            addElementToState={this.addElementToState}
           />
           <Input
             data={surname}
             changeState={this.changeState}
             errorData={errorData.surname}
+            addElementToState={this.addElementToState}
           />
           <Input
             data={birthday}
             changeState={this.changeState}
             errorData={errorData.birthday}
+            addElementToState={this.addElementToState}
           />
           <Select
             data={countries}
@@ -121,13 +147,14 @@ class Form extends React.Component<MyProps, IStateForForm> {
             data={gender}
             changeState={this.changeState}
             errorData={errorData.gender}
+            addElementToState={this.addElementToState}
           />
           <InputImg updateStateImg={this.updateStateImg} />
-          {/*/!*{this.state.file ? <img src={this.state.file} /> : null}*!/*/}
           <Input
             data={consent}
             changeState={this.changeState}
             errorData={errorData.consent}
+            addElementToState={this.addElementToState}
           />
           <Button name="click" />
         </fieldset>

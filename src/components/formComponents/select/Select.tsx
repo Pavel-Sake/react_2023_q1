@@ -1,15 +1,15 @@
 import React from "react";
-import {ErrorValidation} from "../../errorValidation/ErrorValidation";
+import { ErrorValidation } from "../../errorValidation/ErrorValidation";
 
 type IOption = {
   value: string;
   id: number;
-}
+};
 
 type ISelect = {
   option: IOption[];
   keyWord: string;
-}
+};
 type MyProps = {
   // countries: IOption[];
   // keyWord: string;
