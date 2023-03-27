@@ -9,10 +9,10 @@ interface PathProps {
   paths: Ipath[];
 }
 
-function RootLayout(props: PathProps) {
+function RootLayout({ paths }: PathProps) {
   return (
     <div className={styles.rootLayout}>
-      <Header paths={props.paths} />
+      <Header paths={paths} />
       <main className={styles.main}>
         <div className="container">
           <Outlet />

@@ -15,9 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<RootLayout paths={paths} />}>
           <Route index element={<Home products={products} />} />
-          <Route path="/about" element={<About message="dfdf" />} />
+          <Route path="/about" element={<About />} />
           <Route path="/form" element={<FormPage message="dfdf" />} />
-          <Route path="*" element={<NotFound message="not found" />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </div>

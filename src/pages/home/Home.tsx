@@ -7,22 +7,16 @@ interface MyProps {
   products: Iproducts[];
 }
 
-type MyState = {
-  count: number;
-};
-
-class Home extends React.Component<MyProps, MyState> {
-  render() {
-    return (
-      <div data-testid="home-page">
-        <ul className={styles.productList} data-testid="product-list">
-          {this.props.products.map((item) => {
-            return <ItemProduct key={item.id} product={item} />;
-          })}
-        </ul>
-      </div>
-    );
-  }
+function Home({ products }: MyProps) {
+  return (
+    <div data-testid="home-page">
+      <ul className={styles.productList} data-testid="product-list">
+        {products.map((item) => {
+          return <ItemProduct key={item.id} product={item} />;
+        })}
+      </ul>
+    </div>
+  );
 }
 
 export { Home };
