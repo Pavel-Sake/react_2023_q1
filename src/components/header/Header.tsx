@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SearchInput } from "../searchInput/SearchInput";
 import { SearchButton } from "../searchButton/SearchButton";
 import { Nav } from "../nav/Nav";
@@ -10,17 +10,18 @@ interface PathProps {
   paths: Ipath[];
 }
 
-type MyState = {
-  path: string | undefined;
+type PathLibrary = {
+  [key: string]: string;
 };
 
-const pathLibrary = {
+const pathLibrary: PathLibrary = {
   "/": "Home",
   "/about": "About",
   "/form": "Form",
 };
-export function getPageLabel(text: string): string | undefined {
-  const label = pathLibrary[text as keyof typeof pathLibrary];
+
+export function getPageLabel(key: string): string {
+  const label = pathLibrary[key];
 
   if (label) {
     return label;
@@ -29,35 +30,31 @@ export function getPageLabel(text: string): string | undefined {
   }
 }
 
-class Header extends React.Component<PathProps, MyState> {
-  state: MyState = {
-    path: "Home",
-  };
-  componentDidMount() {
+function Header({ paths }: PathProps) {
+  const [path, setPath] = useState({ path: "Home" });
+
+  useEffect(() => {
     const url = window.location.pathname;
     const label = getPageLabel(url);
-    this.setState({ path: label });
-  }
+    setPath({ path: label });
+  }, []);
+  const changePageLabel = (text: string): void => {
+    const label = getPageLabel(text);
+    setPath({ path: label });
+  };
 
-  render() {
-    const changePageLabel = (text: string): void => {
-      const label = getPageLabel(text);
-      this.setState({ path: label });
-    };
-
-    return (
-      <div className={styles.header}>
-        <div className="container">
-          <Nav paths={this.props.paths} changePageLabel={changePageLabel} />
-          <div className={styles.searchBlock}>
-            <div data-testid="page-label">{this.state.path}</div>
-            <SearchInput message="search" />
-            <SearchButton number={34} />
-          </div>
+  return (
+    <div className={styles.header}>
+      <div className="container">
+        <Nav paths={paths} changePageLabel={changePageLabel} />
+        <div className={styles.searchBlock}>
+          <div data-testid="page-label">{path.path}</div>
+          <SearchInput message="search" />
+          <SearchButton number={34} />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export { Header };
