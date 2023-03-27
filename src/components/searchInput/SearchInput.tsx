@@ -1,49 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
 type MyProps = {
   message: string;
 };
-
-type MyState = {
-  text: string;
-};
-
-class SearchInput extends React.Component<MyProps, MyState> {
-  state: MyState = {
+function SearchInput({ message }: MyProps) {
+  const [text, setText] = useState({
     text: "",
-  };
+  });
 
-  handleChangeInput = (e: React.FormEvent<HTMLInputElement>): void => {
-    localStorage.setItem("inputValue", this.state.text);
-    this.setState({ text: e.currentTarget.value });
-  };
+  function handleChangeInput(e: React.FormEvent<HTMLInputElement>): void {
+    localStorage.setItem("inputValue", e.currentTarget.value);
+    setText({ text: e.currentTarget.value });
+  }
 
-  componentDidMount() {
+  useEffect(() => {
     const inputValue = localStorage.getItem("inputValue");
     if (inputValue) {
-      this.setState({ text: inputValue });
+      setText({ text: inputValue });
     }
-  }
+  }, []);
 
-  componentWillUnmount() {
-    localStorage.setItem("inputValue", this.state.text);
-  }
-
-  render() {
-    return (
-      <>
-        <input
-          className={styles.input}
-          data-testid="searchInput"
-          type="text"
-          placeholder={this.props.message}
-          value={this.state.text}
-          onChange={this.handleChangeInput}
-        />
-      </>
-    );
-  }
+  return (
+    <input
+      className={styles.input}
+      data-testid="searchInput"
+      type="text"
+      placeholder={message}
+      value={text.text}
+      onChange={handleChangeInput}
+    />
+  );
 }
 
 export { SearchInput };
