@@ -9,28 +9,21 @@ interface PathProps {
   changePageLabel: (text: string) => void;
 }
 
-type MyState = {
-  state: string;
-};
-class ItemLink extends React.Component<PathProps, MyState> {
-  render() {
-    const { value, path } = this.props.path;
-
-    return (
-      <li className={styles.itemLink}>
-        <NavLink
-          className={styles.link}
-          data-testid="link"
-          to={path}
-          onClick={() => {
-            this.props.changePageLabel(path);
-          }}
-        >
-          {value}
-        </NavLink>
-      </li>
-    );
-  }
+function ItemLink({ path, changePageLabel }: PathProps) {
+  return (
+    <li className={styles.itemLink}>
+      <NavLink
+        className={styles.link}
+        data-testid="link"
+        to={path.path}
+        onClick={() => {
+          changePageLabel(path.path);
+        }}
+      >
+        {path.value}
+      </NavLink>
+    </li>
+  );
 }
 
 export { ItemLink };

@@ -9,28 +9,22 @@ interface PathProps {
   changePageLabel: (text: string) => void;
 }
 
-type MyState = {
-  state: string;
-};
-class Nav extends React.Component<PathProps, MyState> {
-  render() {
-    const { paths } = this.props;
-    return (
-      <nav className={styles.nav} data-testid="nav">
-        <ul className={styles.navList}>
-          {paths.map((path) => {
-            return (
-              <ItemLink
-                path={path}
-                key={path.index}
-                changePageLabel={this.props.changePageLabel}
-              />
-            );
-          })}
-        </ul>
-      </nav>
-    );
-  }
+function Nav({ paths, changePageLabel }: PathProps) {
+  return (
+    <nav className={styles.nav} data-testid="nav">
+      <ul className={styles.navList}>
+        {paths.map((path) => {
+          return (
+            <ItemLink
+              path={path}
+              key={path.index}
+              changePageLabel={changePageLabel}
+            />
+          );
+        })}
+      </ul>
+    </nav>
+  );
 }
 
 export { Nav };
