@@ -36,7 +36,9 @@ function Form({ changeStateAddCard, dataForm }: MyProps) {
     const arrDataForm = Object.entries(dataForm)
 
     arrDataForm.forEach(([key, value]) => {
-      setValue(key, value)
+      if (key !== "imgFile") {
+        setValue(key, value)
+      }
     })
 
     changeStateAddCard(data)

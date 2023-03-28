@@ -17,7 +17,7 @@ const initialFormSate = {
 };
 
 function FormPage() {
-  const [dataForm] = useState<IUserFormState>(initialFormSate);
+  const [dataForm, setDataForm] = useState<IUserFormState>(initialFormSate);
   const [isNotification, setIsNotification] = useState(false);
   const [userCards, setUserCards] = useState<IUserFormState[]>([]);
 
@@ -27,6 +27,8 @@ function FormPage() {
     setTimeout(() => {
       setIsNotification(false);
     }, 500);
+
+    setDataForm(dataFromForm);
 
     setUserCards((state: IUserFormState[]): IUserFormState[] => {
       const userCards: IUserFormState[] = [...state];
