@@ -7,15 +7,9 @@ import { Radio } from "../radio/Radio";
 import { Button } from "../button/Button";
 import { pageFormData } from "../../../data/pageFormData";
 import { InputImg } from "../inputImg/InputImg";
-import { validation } from "../../../formValidation/validation";
-import { checkCreatingCard } from "../../../formValidation/validationCreatingCard";
 
 import styles from "./styles.module.css";
 
-// import {
-//   IStateForForm,
-//   IDataFromForm,
-// } from "../../../interfaces/IStateForForm";
 import { InputDate } from "../inputDate/InputDate";
 import {InputCheckbox} from "../inputCheckbox/inputCheckbox";
 import { IUserFormState } from "../../../interfaces/IUserFormState";
@@ -23,12 +17,14 @@ import { IUserFormState } from "../../../interfaces/IUserFormState";
 
 type MyProps = {
   changeStateAddCard: (dataFromForm: IUserFormState) => void;
+  dataForm: IUserFormState;
 };
 
 
-function Form({ changeStateAddCard }: MyProps) {
+function Form({ changeStateAddCard, dataForm }: MyProps) {
   const {
     register,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -36,6 +32,12 @@ function Form({ changeStateAddCard }: MyProps) {
   const { name, surname, birthday, countries, gender, consent } = pageFormData;
 
   function handleSubmitForm(data: any) {
+
+    const arrDataForm = Object.entries(dataForm)
+
+    arrDataForm.forEach(([key, value]) => {
+      setValue(key, value)
+    })
 
     changeStateAddCard(data)
   }

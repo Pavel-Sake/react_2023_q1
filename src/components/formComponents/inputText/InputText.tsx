@@ -6,7 +6,6 @@ import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 type MyProps = {
   data: IInput;
-  // register: UseFormRegister<FieldValues>;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors<FieldValues>;
 };

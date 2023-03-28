@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
-import { IDataFromForm } from "../../interfaces/IStateForForm";
+//import { IDataFromForm } from "../../interfaces/IStateForForm";
 
 import avatarImg from "../../assets/icons/user.png";
 

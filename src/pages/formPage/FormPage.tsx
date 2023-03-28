@@ -3,8 +3,6 @@ import { Form } from "../../components/formComponents/form/Form";
 import { UserCard } from "../../components/userCard/UserCard";
 import { Notification } from "../../components/formComponents/notification/Notification";
 import styles from "./styles.module.css";
-import { FieldValues, SubmitHandler } from "react-hook-form";
-//import { IDataFromForm } from "../../interfaces/IStateForForm";
 
 import { IUserFormState } from "../../interfaces/IUserFormState";
 
@@ -12,14 +10,14 @@ const initialFormSate = {
   name: "",
   surname: "",
   birthday: "",
-  country: "",
+  country: "Poland",
   gender: "",
   imgFile: {},
   consent: false,
 };
 
 function FormPage() {
-  const [dataForm, setDataForm] = useState<IUserFormState>(initialFormSate);
+  const [dataForm] = useState<IUserFormState>(initialFormSate);
   const [isNotification, setIsNotification] = useState(false);
   const [userCards, setUserCards] = useState<IUserFormState[]>([]);
 
@@ -29,7 +27,6 @@ function FormPage() {
     setTimeout(() => {
       setIsNotification(false);
     }, 500);
-    // setDataForm(dataFromForm);
 
     setUserCards((state: IUserFormState[]): IUserFormState[] => {
       const userCards: IUserFormState[] = [...state];
@@ -39,12 +36,10 @@ function FormPage() {
     });
   }
 
-  console.log(userCards);
-
   return (
     <div className={styles.formPage}>
       {isNotification ? <Notification /> : null}
-      <Form changeStateAddCard={changeStateAddCard} />
+      <Form changeStateAddCard={changeStateAddCard} dataForm={dataForm} />
       {userCards.map((item, index) => {
         return <UserCard key={index} card={item} />;
       })}
