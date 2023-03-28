@@ -1,49 +1,41 @@
-import React, { RefObject } from "react";
-import { Input } from "../input/Input";
+import React from "react";
 import { IInput } from "../../../interfaces/IPageFormData";
 import { ErrorValidation } from "../../errorValidation/ErrorValidation";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 type MyProps = {
-  data: IInput[];
-  changeState: (text: string | undefined, name: string) => void;
-  errorData?: {
-    isValid: boolean | null | undefined;
-    errorText: string | undefined;
+  data: {
+    items: IInput[];
+    keyWord: string;
   };
-  addElementToState: (element: RefObject<HTMLInputElement>) => void;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors<FieldValues>;
 };
 
-type MyState = {
-  state: string;
-};
-
-class Radio extends React.Component<MyProps, MyState> {
-  errorDataNoError = {
-    isValid: true,
-    errorText: "",
-  };
-  render() {
-    const { data } = this.props;
-    const { isValid, errorText } = this.props.errorData!;
-    return (
+function Radio({ data, register, errors }: MyProps) {
+  return (
+    <div>
       <div>
-        <div>
-          {data.map((item, index) => {
-            return (
-              <Input
-                data={item}
-                key={index}
-                changeState={this.props.changeState}
-                errorData={this.errorDataNoError}
-                addElementToState={this.props.addElementToState}
+        {data.items.map((item, index) => {
+          return (
+            <label key={index}>
+              <input
+                type="radio"
+                value={item.value}
+                {...register(item.name, { required: true })}
               />
-            );
-          })}
-        </div>
-        <ErrorValidation text={errorText} isValid={isValid} />
+              {item.value}
+            </label>
+          );
+        })}
       </div>
-    );
-  }
+      <ErrorValidation
+        text={`${data.keyWord} is required`}
+        errors={errors}
+        keyWord={data.keyWord}
+      />
+    </div>
+  );
 }
 
 export { Radio };

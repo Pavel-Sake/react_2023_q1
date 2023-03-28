@@ -4,19 +4,12 @@ type MyProps = {
   name: string;
 };
 
-type MyState = {
-  state: string;
-};
-
-class Button extends React.Component<MyProps, MyState> {
-  render() {
-    const { name } = this.props;
-    return (
-      <>
-        <button type="submit">{name}</button>
-      </>
-    );
-  }
+function Button({ name }: MyProps) {
+  return (
+    <>
+      <button type="submit">{name}</button>
+    </>
+  );
 }
 
 export { Button };

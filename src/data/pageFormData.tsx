@@ -17,17 +17,17 @@ const pageFormData: IPageFormData = {
   },
   birthday: {
     type: "date",
-    label: "birthday",
+    label: "Birthday",
     name: "birthday",
     value: "",
     keyWord: "birthday",
   },
   countries: {
     option: [
-      {
-        value: "Choose countries",
-        id: 1,
-      },
+      // {
+      //   value: "Choose countries",
+      //   id: 1,
+      // },
       {
         value: "Poland",
         id: 2,
@@ -51,22 +51,25 @@ const pageFormData: IPageFormData = {
     ],
     keyWord: "country",
   },
-  gender: [
-    {
-      type: "radio",
-      label: "male",
-      name: "gender",
-      value: "male",
-      keyWord: "gender",
-    },
-    {
-      type: "radio",
-      label: "female",
-      name: "gender",
-      value: "female",
-      keyWord: "gender",
-    },
-  ],
+  gender: {
+    items: [
+      {
+        type: "radio",
+        label: "male",
+        name: "gender",
+        value: "male",
+        keyWord: "gender",
+      },
+      {
+        type: "radio",
+        label: "female",
+        name: "gender",
+        value: "female",
+        keyWord: "gender",
+      },
+    ],
+    keyWord: "gender",
+  },
   consent: {
     type: "checkbox",
     label: "I consent to my personal data field",

@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<RootLayout paths={paths} />}>
           <Route index element={<Home products={products} />} />
           <Route path="/about" element={<About />} />
-          <Route path="/form" element={<FormPage message="dfdf" />} />
+          <Route path="/form" element={<FormPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

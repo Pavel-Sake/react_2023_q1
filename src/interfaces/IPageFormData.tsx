@@ -19,7 +19,10 @@ interface IPageFormData {
     option: IOption[];
     keyWord: string;
   };
-  gender: IInput[];
+  gender: {
+    items: IInput[];
+    keyWord: string;
+  };
   consent: IInput;
 }
 

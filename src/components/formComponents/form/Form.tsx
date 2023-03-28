@@ -1,5 +1,7 @@
 import React, { ChangeEvent, ChangeEventHandler, RefObject } from "react";
-import { Input } from "../input/Input";
+import { useForm } from "react-hook-form";
+
+import { InputText } from "../inputText/InputText";
 import { Select } from "../select/Select";
 import { Radio } from "../radio/Radio";
 import { Button } from "../button/Button";
@@ -14,6 +16,8 @@ import {
   IStateForForm,
   IDataFromForm,
 } from "../../../interfaces/IStateForForm";
+import { InputDate } from "../inputDate/InputDate";
+import {InputCheckbox} from "../inputCheckbox/inputCheckbox";
 
 type MyProps = {
   changeStateAddCard: (dataFromForm: IDataFromForm) => void;
@@ -59,108 +63,34 @@ const itintialState = {
   elements: [],
 };
 
-class Form extends React.Component<MyProps, IStateForForm> {
-  constructor(props: MyProps) {
-    super(props);
-    this.state = itintialState;
+function Form({ changeStateAddCard }: MyProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { name, surname, birthday, countries, gender, consent } = pageFormData;
+
+  function onSubmit(data: any) {
+    console.log(data);
   }
 
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const errorValidationData = validation(this.state.dataFromForm);
-    this.setState({ errorData: errorValidationData }, () => {
-      const { errorData, dataFromForm } = this.state;
-      const isAllFieldsValid = checkCreatingCard(errorData);
-      this.setState({ isAllFieldsValid: isAllFieldsValid }); //delete later
-
-      if (isAllFieldsValid) {
-        // this.state.elements.forEach((item) => {
-        //   if (item.current?.name === "name") {
-        //     item.current.value = "";
-        //   } else if (item.current?.name === "surname") {
-        //     item.current.value = "";
-        //   } else if (item.current?.name === "birthday") {
-        //     item.current.value = "";
-        //   } else if (item.current?.name === "gender") {
-        //     item.current.checked = false;
-        //   } else if (item.current?.name === "consent") {
-        //     item.current.checked = false;
-        //   }
-        // });
-
-        this.setState({});
-
-        this.props.changeStateAddCard(dataFromForm);
-      }
-    });
-  };
-
-  changeState = (value: string | undefined, key: string): void => {
-    const { dataFromForm } = this.state;
-    const currentObjState: any = {};
-    currentObjState[key] = value;
-    this.setState({ dataFromForm: { ...dataFromForm, ...currentObjState } });
-  };
-
-  updateStateImg = (file: object) => {
-    const { dataFromForm } = this.state;
-    this.setState({ dataFromForm: { ...dataFromForm, file: file } });
-  };
-
-  addElementToState = (element: RefObject<HTMLInputElement>): void => {
-    this.state.elements.push(element);
-  };
-  render() {
-    const { name, surname, birthday, countries, gender, consent } =
-      pageFormData;
-
-    const { errorData } = this.state;
-
-    return (
-      <form className={styles.form} onSubmit={this.handleSubmit}>
-        <fieldset className={styles.fieldset}>
-          <legend className={styles.legend}>Card</legend>
-          <Input
-            data={name}
-            changeState={this.changeState}
-            errorData={errorData.name}
-            addElementToState={this.addElementToState}
-          />
-          <Input
-            data={surname}
-            changeState={this.changeState}
-            errorData={errorData.surname}
-            addElementToState={this.addElementToState}
-          />
-          <Input
-            data={birthday}
-            changeState={this.changeState}
-            errorData={errorData.birthday}
-            addElementToState={this.addElementToState}
-          />
-          <Select
-            data={countries}
-            changeState={this.changeState}
-            errorData={errorData.country}
-          />
-          <Radio
-            data={gender}
-            changeState={this.changeState}
-            errorData={errorData.gender}
-            addElementToState={this.addElementToState}
-          />
-          <InputImg updateStateImg={this.updateStateImg} />
-          <Input
-            data={consent}
-            changeState={this.changeState}
-            errorData={errorData.consent}
-            addElementToState={this.addElementToState}
-          />
-          <Button name="click" />
-        </fieldset>
-      </form>
-    );
-  }
+  return (
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <fieldset className={styles.fieldset}>
+        <legend className={styles.legend}>Card</legend>
+        <InputText data={name} register={register} errors={errors} />
+        <InputText data={surname} register={register} errors={errors} />
+        <InputDate data={birthday} register={register} errors={errors} />
+        <Select data={countries} register={register} errors={errors} />
+        <Radio data={gender} register={register} errors={errors} />
+        <InputImg register={register} />
+        <InputCheckbox data={consent} register={register} errors={errors} />
+        <Button name="click" />
+      </fieldset>
+    </form>
+  );
 }
 
 export { Form };
