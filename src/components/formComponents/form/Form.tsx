@@ -12,56 +12,19 @@ import { checkCreatingCard } from "../../../formValidation/validationCreatingCar
 
 import styles from "./styles.module.css";
 
-import {
-  IStateForForm,
-  IDataFromForm,
-} from "../../../interfaces/IStateForForm";
+// import {
+//   IStateForForm,
+//   IDataFromForm,
+// } from "../../../interfaces/IStateForForm";
 import { InputDate } from "../inputDate/InputDate";
 import {InputCheckbox} from "../inputCheckbox/inputCheckbox";
+import { IUserFormState } from "../../../interfaces/IUserFormState";
+
 
 type MyProps = {
-  changeStateAddCard: (dataFromForm: IDataFromForm) => void;
+  changeStateAddCard: (dataFromForm: IUserFormState) => void;
 };
 
-const itintialState = {
-  dataFromForm: {
-    name: "",
-    surname: "",
-    birthday: "",
-    country: "",
-    gender: "",
-    consent: "false",
-    file: null,
-  },
-  errorData: {
-    name: {
-      isValid: false,
-      errorText: "",
-    },
-    surname: {
-      isValid: false,
-      errorText: "",
-    },
-    birthday: {
-      isValid: false,
-      errorText: "",
-    },
-    country: {
-      isValid: false,
-      errorText: "",
-    },
-    gender: {
-      isValid: false,
-      errorText: "",
-    },
-    consent: {
-      isValid: false,
-      errorText: "",
-    },
-  },
-  isAllFieldsValid: false,
-  elements: [],
-};
 
 function Form({ changeStateAddCard }: MyProps) {
   const {
@@ -72,12 +35,13 @@ function Form({ changeStateAddCard }: MyProps) {
 
   const { name, surname, birthday, countries, gender, consent } = pageFormData;
 
-  function onSubmit(data: any) {
-    console.log(data);
+  function handleSubmitForm(data: any) {
+
+    changeStateAddCard(data)
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)}>
       <fieldset className={styles.fieldset}>
         <legend className={styles.legend}>Card</legend>
         <InputText data={name} register={register} errors={errors} />

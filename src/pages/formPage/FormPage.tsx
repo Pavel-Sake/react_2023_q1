@@ -1,48 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form } from "../../components/formComponents/form/Form";
 import { UserCard } from "../../components/userCard/UserCard";
 import { Notification } from "../../components/formComponents/notification/Notification";
 import styles from "./styles.module.css";
-import { IDataFromForm } from "../../interfaces/IStateForForm";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+//import { IDataFromForm } from "../../interfaces/IStateForForm";
 
-type MyProps = {
-  message?: string;
+import { IUserFormState } from "../../interfaces/IUserFormState";
+import { log } from "util";
+
+const initialFormSate = {
+  name: "",
+  surname: "",
+  birthday: "",
+  country: "",
+  gender: "",
+  imgFile: {},
+  consent: false,
 };
 
-type MyState = {
-  cardFromForm: IDataFromForm[];
-  isNotification: boolean;
-};
-class FormPage extends React.Component<MyProps, MyState> {
-  constructor(props: MyProps) {
-    super(props);
-    this.state = {
-      cardFromForm: [],
-      isNotification: false,
-    };
-  }
+function FormPage() {
+  const [dataForm, setDataForm] = useState<IUserFormState>(initialFormSate);
+  const [isNotification, setIsNotification] = useState(false);
 
-  changeStateAddCard = (dataFromForm: IDataFromForm): void => {
-    const arr = [...this.state.cardFromForm, { ...dataFromForm }];
-
-    this.setState({ cardFromForm: arr });
-    this.setState({ isNotification: true });
+  function changeStateAddCard(dataFromForm: IUserFormState): void {
+    // const arr = [...this.state.cardFromForm, { ...dataFromForm }];
+    //
+    // this.setState({ cardFromForm: arr });
+    // this.setState({ isNotification: true });
+    //
+    setIsNotification(true);
 
     setTimeout(() => {
-      this.setState({ isNotification: false });
+      setIsNotification(false);
     }, 500);
-  };
-  render() {
-    return (
-      <div className={styles.formPage}>
-        {this.state.isNotification ? <Notification /> : null}
-        <Form changeStateAddCard={this.changeStateAddCard} />
-        {this.state.cardFromForm.map((item, index) => {
-          return <UserCard key={index} card={item} />;
-        })}
-      </div>
-    );
+
+    setDataForm(dataFromForm);
   }
+
+  return (
+    <div className={styles.formPage}>
+      {isNotification ? <Notification /> : null}
+      <Form changeStateAddCard={changeStateAddCard} />
+      {/*{this.state.cardFromForm.map((item, index) => {*/}
+      {/*  return <UserCard key={index} card={item} />;*/}
+      {/*})}*/}
+    </div>
+  );
 }
 
 export { FormPage };
