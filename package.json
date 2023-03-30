@@ -31,6 +31,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "covarege": "react-scripts test --coverage",
     "lint": "eslint --fix .",
     "eject": "react-scripts eject"
   },

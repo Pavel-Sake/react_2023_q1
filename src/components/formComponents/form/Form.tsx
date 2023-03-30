@@ -11,15 +11,13 @@ import { InputImg } from "../inputImg/InputImg";
 import styles from "./styles.module.css";
 
 import { InputDate } from "../inputDate/InputDate";
-import {InputCheckbox} from "../inputCheckbox/inputCheckbox";
+import { InputCheckbox } from "../inputCheckbox/inputCheckbox";
 import { IUserFormState } from "../../../interfaces/IUserFormState";
-
 
 type MyProps = {
   changeStateAddCard: (dataFromForm: IUserFormState) => void;
   dataForm: IUserFormState;
 };
-
 
 function Form({ changeStateAddCard, dataForm }: MyProps) {
   const {
@@ -31,17 +29,32 @@ function Form({ changeStateAddCard, dataForm }: MyProps) {
 
   const { name, surname, birthday, countries, gender, consent } = pageFormData;
 
-  function handleSubmitForm(data: any) {
+  function uploadImage(data: any) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = reader.result!.toString();
 
-    const arrDataForm = Object.entries(dataForm)
+        data.imgFile = img
+        changeStateAddCard(data)
+      };
+      reader.readAsDataURL(data.imgFile[0]);
+  }
+
+  function handleSubmitForm(data: any) {
+    const arrDataForm = Object.entries(dataForm);
+
+
+    if (data.imgFile.length > 0) {
+      uploadImage(data)
+    } else {
+      data.imgFile = null
+      changeStateAddCard(data)
+    }
 
     arrDataForm.forEach(([key, value]) => {
-      if (key !== "imgFile") {
         setValue(key, value)
-      }
     })
 
-    changeStateAddCard(data)
   }
 
   return (

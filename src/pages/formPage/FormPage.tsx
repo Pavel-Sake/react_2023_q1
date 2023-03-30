@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "../../components/formComponents/form/Form";
 import { UserCard } from "../../components/userCard/UserCard";
 import { Notification } from "../../components/formComponents/notification/Notification";
@@ -12,14 +12,25 @@ const initialFormSate = {
   birthday: "",
   country: "Poland",
   gender: "",
-  imgFile: {},
+  imgFile: null,
   consent: false,
 };
 
+const keyUserCard = "userCards";
+
 function FormPage() {
-  const [dataForm, setDataForm] = useState<IUserFormState>(initialFormSate);
+  const [dataForm] = useState<IUserFormState>(initialFormSate);
   const [isNotification, setIsNotification] = useState(false);
   const [userCards, setUserCards] = useState<IUserFormState[]>([]);
+
+  useEffect(() => {
+    const userCardsLocal = localStorage.getItem(keyUserCard);
+
+    if (userCardsLocal) {
+      const userCards = JSON.parse(userCardsLocal);
+      setUserCards(userCards);
+    }
+  }, []);
 
   function changeStateAddCard(dataFromForm: IUserFormState): void {
     setIsNotification(true);
@@ -28,11 +39,11 @@ function FormPage() {
       setIsNotification(false);
     }, 500);
 
-    setDataForm(dataFromForm);
-
     setUserCards((state: IUserFormState[]): IUserFormState[] => {
       const userCards: IUserFormState[] = [...state];
       userCards.push(dataFromForm);
+
+      localStorage.setItem(keyUserCard, JSON.stringify(userCards));
 
       return userCards;
     });

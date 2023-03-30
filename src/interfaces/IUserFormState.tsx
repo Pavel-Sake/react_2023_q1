@@ -4,7 +4,7 @@ interface IUserFormState {
   birthday: string;
   country: string;
   gender: string;
-  imgFile: object;
+  imgFile: string | null;
   consent: boolean;
 }
 

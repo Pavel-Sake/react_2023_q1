@@ -16,6 +16,3 @@ function InputImg({ register }: MyProps) {
 }
 
 export { InputImg };
-
-// const file: any = e.target.files;
-// this.setState({ file: URL.createObjectURL(file[0]) });
