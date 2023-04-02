@@ -1,0 +1,22 @@
+.form {
+    width: 50%;
+}
+
+.fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    background: #e3dede;
+    border: 1px gray solid;
+    border-radius: 6px;
+}
+
+.legend {
+    background-color: gray;
+    color: white;
+    padding: 5px 10px;
+
+    border-radius: 6px;
+}
