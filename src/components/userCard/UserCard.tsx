@@ -10,23 +10,13 @@ type MyProps = {
   card: IUserFormState;
 };
 
-// interface IImg {
-//   [key: number]: any;
-// }
-
 function UserCard({ card }: MyProps) {
   const { name, surname, birthday, country, gender, imgFile } = card;
-  // const img: IImg = { ...imgFile };
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} data-testid="userCards">
       {imgFile ? (
-        <img
-          className={styles.img}
-          // src={URL.createObjectURL(img[0] as Blob)}
-          src={imgFile}
-          alt="avatar"
-        />
+        <img className={styles.img} src={imgFile} alt="avatar" />
       ) : (
         <img className={styles.img} src={avatarImg} alt="avatar" />
       )}

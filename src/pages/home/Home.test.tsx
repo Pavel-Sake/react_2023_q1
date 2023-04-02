@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Home } from "../pages/home/Home";
-import { products } from "../data/products";
+import { Home } from "./Home";
+import { products } from "../../data/products";
 
 describe("Test Homepage", () => {
   test("is lest render", () => {

@@ -12,7 +12,7 @@ type MyProps = {
 
 function InputText({ data, register, errors }: MyProps) {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="inputText">
       <label className={styles.label}>
         <input
           className={styles.input}

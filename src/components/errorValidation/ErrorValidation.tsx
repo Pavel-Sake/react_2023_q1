@@ -9,13 +9,15 @@ type MyProps = {
 };
 function ErrorValidation({ text, errors, keyWord }: MyProps) {
   return (
-    <>
+    <div>
       {errors[keyWord] ? (
-        <div className={styles.textError}>{text}</div>
+        <div className={styles.textError} data-testid="error-true">
+          {text}
+        </div>
       ) : (
-        <div className={styles.space}></div>
+        <div className={styles.space} data-testid="error-false"></div>
       )}
-    </>
+    </div>
   );
 }
 

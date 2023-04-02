@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import App from "../App";
+import App from "./App";
 import { MemoryRouter } from "react-router-dom";
 test("Router test", () => {
   render(
@@ -16,6 +16,9 @@ test("Router test", () => {
 
   fireEvent.click(links[0]);
   expect(screen.queryByTestId("home-page")).toBeInTheDocument();
+
+  fireEvent.click(links[2]);
+  expect(screen.queryByTestId("form-page")).toBeInTheDocument();
 });
 
 test("Error page test", () => {

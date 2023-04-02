@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { Header, getPageLabel } from "../components/header/Header";
-import { paths } from "../data/paths";
+import { Header, getPageLabel } from "./Header";
+import { paths } from "../../data/paths";
 import { MemoryRouter } from "react-router-dom";
 
 describe("Test Header page", () => {

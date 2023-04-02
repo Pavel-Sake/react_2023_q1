@@ -58,7 +58,7 @@ function Form({ changeStateAddCard, dataForm }: MyProps) {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)}>
+    <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)} data-testid="form">
       <fieldset className={styles.fieldset}>
         <legend className={styles.legend}>Card</legend>
         <InputText data={name} register={register} errors={errors} />

@@ -16,6 +16,7 @@ function InputDate({ data, register, errors }: MyProps) {
       <label className={styles.label}>
         <input
           className={styles.input}
+          data-testid="intupDate"
           type="date"
           placeholder={data.label}
           {...register(`${data.keyWord}`, { required: true })}

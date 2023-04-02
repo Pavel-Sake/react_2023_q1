@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { ItemProduct } from "../components/ItemProduct/ItemProduct";
-import { Iproducts } from "../interfaces/products";
+import { ItemProduct } from "./ItemProduct";
+import { Iproducts } from "../../interfaces/products";
 
 const itemProduct: Iproducts = {
   name: "Daisy Jones and The Six",

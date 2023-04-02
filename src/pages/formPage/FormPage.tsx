@@ -50,7 +50,7 @@ function FormPage() {
   }
 
   return (
-    <div className={styles.formPage}>
+    <div className={styles.formPage} data-testid="form-page">
       {isNotification ? <Notification /> : null}
       <Form changeStateAddCard={changeStateAddCard} dataForm={dataForm} />
       {userCards.map((item, index) => {
