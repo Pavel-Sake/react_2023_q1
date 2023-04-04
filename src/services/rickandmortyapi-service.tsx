@@ -18,9 +18,7 @@ class RickandmortyapiService {
   }
 
   async getPeopleByName(name: string) {
-    const response = await this.getResource(`/character/?name=${name}`);
-
-    return response;
+    return await this.getResource(`/character/?name=${name}`);
   }
 }
 

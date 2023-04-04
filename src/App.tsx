@@ -7,14 +7,13 @@ import { Routes, Route } from "react-router-dom";
 import { RootLayout } from "./layout/RootLayout";
 
 import { paths } from "./data/paths";
-import { products } from "./data/products";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<RootLayout paths={paths} />}>
-          <Route index element={<Home products={products} />} />
+          <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/form" element={<FormPage />} />
           <Route path="*" element={<NotFound />} />

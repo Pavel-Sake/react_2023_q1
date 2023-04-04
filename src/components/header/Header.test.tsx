@@ -5,11 +5,13 @@ import { Header, getPageLabel } from "./Header";
 import { paths } from "../../data/paths";
 import { MemoryRouter } from "react-router-dom";
 
+const mockedSetTod = jest.fn();
+
 describe("Test Header page", () => {
   test("render", () => {
     render(
       <MemoryRouter>
-        <Header paths={paths} />
+        <Header paths={paths} handleSetCharactersCard={mockedSetTod}/>
       </MemoryRouter>
     );
     const navElement = screen.queryByTestId("nav");

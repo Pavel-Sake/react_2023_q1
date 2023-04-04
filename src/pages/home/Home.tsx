@@ -1,18 +1,17 @@
 import React from "react";
 import { ItemProduct } from "../../components/ItemProduct/ItemProduct";
-import { Iproducts } from "../../interfaces/products";
 import styles from "./styles.module.css";
+import { useOutletContext } from "react-router-dom";
+import { ICharacterCard } from "../../interfaces/ICharacterCard";
 
-interface MyProps {
-  products: Iproducts[];
-}
+function Home() {
+  const charactersCard = useOutletContext<ICharacterCard[]>();
 
-function Home({ products }: MyProps) {
   return (
     <div data-testid="home-page">
       <ul className={styles.productList} data-testid="product-list">
-        {products.map((item) => {
-          return <ItemProduct key={item.id} product={item} />;
+        {charactersCard.map((item) => {
+          return <ItemProduct key={item.id} data={item} />;
         })}
       </ul>
     </div>

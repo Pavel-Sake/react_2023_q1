@@ -1,28 +1,24 @@
-import React from "react";
-import { Iproducts } from "../../interfaces/products";
+import React, { FC } from "react";
 
 import styles from "./styles.module.css";
+import { ICharacterCard } from "../../interfaces/ICharacterCard";
 
-interface MyProps {
-  product: Iproducts;
-}
-
-type MyState = {
-  state: string;
+type MyProps = {
+  data: ICharacterCard;
 };
-class ItemProduct extends React.Component<MyProps, MyState> {
-  render() {
-    const { name, author, rating, price, currency, src } = this.props.product;
-    return (
-      <li className={styles.item} data-testid="product-item">
-        <img className={styles.img} src={src} alt="img" />
-        <div>{name}</div>
-        <div>{author}</div>
-        <div>{rating}</div>
-        <div>{`${price} ${currency}`}</div>
-      </li>
-    );
-  }
-}
+
+const ItemProduct: FC<MyProps> = ({ data }) => {
+  console.log(data);
+  const { image, name, status, gender, species } = data;
+  return (
+    <li className={styles.item} data-testid="product-item">
+      <img className={styles.img} src={image} alt={name} />
+      <div>{name}</div>
+      <div>{`Status: (${status})`}</div>
+      <div>{`Gender: (${gender})`}</div>
+      <div>{`Species: (${species})`}</div>
+    </li>
+  );
+};
 
 export { ItemProduct };
