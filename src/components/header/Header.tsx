@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { SearchInput } from "../searchInput/SearchInput";
-import { SearchButton } from "../searchButton/SearchButton";
 import { Nav } from "../nav/Nav";
 
 import styles from "./styles.module.css";
 import { Ipath } from "../../interfaces/path";
+import { SearchBlock } from "../searchBlock/SearchBlock";
 
 interface PathProps {
   paths: Ipath[];
@@ -33,7 +32,6 @@ export function getPageLabel(key: string): string {
 
 function Header({ paths }: PathProps) {
   const [path, setPath] = useState({ path: "Home" });
-
   const location = useLocation();
 
   useEffect(() => {
@@ -51,8 +49,7 @@ function Header({ paths }: PathProps) {
         <Nav paths={paths} changePageLabel={changePageLabel} />
         <div className={styles.searchBlock}>
           <div data-testid="page-label">{path.path}</div>
-          <SearchInput message="search" />
-          <SearchButton />
+          <SearchBlock />
         </div>
       </div>
     </div>
