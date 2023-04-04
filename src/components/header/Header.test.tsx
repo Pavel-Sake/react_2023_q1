@@ -11,7 +11,7 @@ describe("Test Header page", () => {
   test("render", () => {
     render(
       <MemoryRouter>
-        <Header paths={paths} handleSetCharactersCard={mockedSetTod}/>
+        <Header paths={paths} handleSetSearchName={mockedSetTod} />
       </MemoryRouter>
     );
     const navElement = screen.queryByTestId("nav");

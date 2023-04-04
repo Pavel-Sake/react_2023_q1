@@ -1,36 +1,23 @@
 import React, { useState } from "react";
 import { SearchInput } from "../searchInput/SearchInput";
 import { SearchButton } from "../searchButton/SearchButton";
-import { ICharacterCard } from "../../interfaces/ICharacterCard";
 
 import styles from "./styles.module.css";
-import { RickandmortyapiService } from "../../services/rickandmortyapi-service";
 
 type MyProps = {
-  handleSetCharactersCard: (cardsCharacter: ICharacterCard[]) => void;
+  handleSetSearchName: (text: string) => void;
 };
 
-
-
-function SearchBlock({ handleSetCharactersCard }: MyProps) {
+function SearchBlock({ handleSetSearchName }: MyProps) {
   const [textInput, setTextInput] = useState("");
 
   function handleInputSearch(text: string): void {
     setTextInput(text);
   }
 
-  function handleSendRequest() {
-    const people = new RickandmortyapiService().getPeopleByName(textInput);
-
-    people
-      .then((data) => {
-        handleSetCharactersCard(data.results)
-      })
-      .catch((error) => {
-        console.log("error--", error);
-      });
+  function handleSubmitTextInput() {
+    handleSetSearchName(textInput);
   }
-
 
   return (
     <div className={styles.searchBlock}>
@@ -39,7 +26,7 @@ function SearchBlock({ handleSetCharactersCard }: MyProps) {
         textInput={textInput}
         handleInputSearch={handleInputSearch}
       />
-      <SearchButton handleSendRequest={handleSendRequest} />
+      <SearchButton handleSubmitTextInput={handleSubmitTextInput} />
     </div>
   );
 }

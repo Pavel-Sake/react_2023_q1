@@ -15,8 +15,24 @@
     background: #dedec3;
 }
 
+.item:hover {
+
+
+    cursor: pointer;
+    background: #bee382;
+    box-shadow: 0 0 10px 5px #bee382
+}
+
 .img {
     width: 95%;
     height: 200px;
     margin-bottom: 10px;
+}
+
+.name {
+    font-size: 15px;
+}
+
+.text {
+    font-size: 12px;
 }

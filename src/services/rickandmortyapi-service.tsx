@@ -5,7 +5,7 @@ class RickandmortyapiService {
     const response = await fetch(`${this._apiBase}${url}`);
 
     if (!response.ok) {
-      throw new Error(`${response.status}`)
+      throw new Error(`${response.status}`);
     }
 
     return await response.json();

@@ -8,15 +8,14 @@ type MyProps = {
 };
 
 const ItemProduct: FC<MyProps> = ({ data }) => {
-  console.log(data);
   const { image, name, status, gender, species } = data;
   return (
     <li className={styles.item} data-testid="product-item">
       <img className={styles.img} src={image} alt={name} />
-      <div>{name}</div>
-      <div>{`Status: (${status})`}</div>
-      <div>{`Gender: (${gender})`}</div>
-      <div>{`Species: (${species})`}</div>
+      <div className={styles.name}>{name}</div>
+      <div className={styles.text}>{`Status: (${status})`}</div>
+      <div className={styles.text}>{`Gender: (${gender})`}</div>
+      <div className={styles.text}>{`Species: (${species})`}</div>
     </li>
   );
 };

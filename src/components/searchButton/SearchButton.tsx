@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./steles.module.css";
 
 type MyProps = {
-  handleSendRequest: () => void;
+  handleSubmitTextInput: () => void;
 };
 
-function SearchButton({ handleSendRequest }: MyProps) {
+function SearchButton({ handleSubmitTextInput }: MyProps) {
   return (
     <div>
-      <button className={styles.searchButton} onClick={handleSendRequest}>
+      <button className={styles.searchButton} onClick={handleSubmitTextInput}>
         search
       </button>
     </div>

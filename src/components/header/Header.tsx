@@ -5,11 +5,10 @@ import { Nav } from "../nav/Nav";
 import styles from "./styles.module.css";
 import { Ipath } from "../../interfaces/path";
 import { SearchBlock } from "../searchBlock/SearchBlock";
-import { ICharacterCard } from "../../interfaces/ICharacterCard";
 
 interface PathProps {
   paths: Ipath[];
-  handleSetCharactersCard: (cardsCharacter: ICharacterCard[]) => void;
+  handleSetSearchName: (text: string) => void;
 }
 
 type PathLibrary = {
@@ -32,11 +31,7 @@ export function getPageLabel(key: string): string {
   }
 }
 
-
-
-
-
-function Header({ paths, handleSetCharactersCard }: PathProps) {
+function Header({ paths, handleSetSearchName }: PathProps) {
   const [path, setPath] = useState({ path: "Home" });
   const location = useLocation();
 
@@ -55,7 +50,7 @@ function Header({ paths, handleSetCharactersCard }: PathProps) {
         <Nav paths={paths} changePageLabel={changePageLabel} />
         <div className={styles.searchBlock}>
           <div data-testid="page-label">{path.path}</div>
-          <SearchBlock handleSetCharactersCard={handleSetCharactersCard} />
+          <SearchBlock handleSetSearchName={handleSetSearchName} />
         </div>
       </div>
     </div>
