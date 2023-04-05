@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import { useOutletContext } from "react-router-dom";
 import { ICharacterCard } from "../../interfaces/ICharacterCard";
 import { RickandmortyapiService } from "../../services/rickandmortyapi-service";
+import { Loader } from "../../components/loader/Loader";
 
 function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,9 +25,9 @@ function Home() {
   }, [searchName]);
 
   return (
-    <div data-testid="home-page">
+    <div className={styles.homePage} data-testid="home-page" >
       {isLoading ? (
-        <div>Loading.....</div>
+        <Loader />
       ) : (
         <ul className={styles.productList} data-testid="product-list">
           {charactersCard.map((item) => {
