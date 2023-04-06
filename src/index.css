@@ -13,3 +13,7 @@ position: relative;
   color: black;
   text-decoration: underline;
 }
+
+li {
+  list-style-type: none;
+}

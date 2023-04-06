@@ -25,7 +25,7 @@ function Home() {
   }, [searchName]);
 
   return (
-    <div className={styles.homePage} data-testid="home-page" >
+    <div className={styles.homePage} data-testid="home-page">
       {isLoading ? (
         <Loader />
       ) : (

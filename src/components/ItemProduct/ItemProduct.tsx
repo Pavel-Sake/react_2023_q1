@@ -1,4 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
+import { ItemProductDefault } from "./itemProductDefault/ItemProductDefault";
+import { ItemProductExtended } from "./itemProdectExtended/ItemProdectExtended";
 
 import styles from "./styles.module.css";
 import { ICharacterCard } from "../../interfaces/ICharacterCard";
@@ -8,14 +10,25 @@ type MyProps = {
 };
 
 const ItemProduct: FC<MyProps> = ({ data }) => {
-  const { image, name, status, gender, species } = data;
+  const [isCardStateNormal, setIsCardStateNormal] = useState(true);
+  function handleOnClickCardState() {
+    setIsCardStateNormal((state) => {
+      return !state;
+    });
+  }
+
   return (
     <li className={styles.item} data-testid="product-item">
-      <img className={styles.img} src={image} alt={name} />
-      <div className={styles.name}>{name}</div>
-      <div className={styles.text}>{`Status: (${status})`}</div>
-      <div className={styles.text}>{`Gender: (${gender})`}</div>
-      <div className={styles.text}>{`Species: (${species})`}</div>
+      <ItemProductDefault
+        data={data}
+        changeCardState={handleOnClickCardState}
+      />
+      {!isCardStateNormal ? (
+        <ItemProductExtended
+          data={data}
+          changeCardState={handleOnClickCardState}
+        />
+      ) : null}
     </li>
   );
 };

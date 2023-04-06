@@ -1,0 +1,34 @@
+.item {
+    width: 145px;
+    padding: 5px;
+    margin-bottom: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    border-radius: 6px;
+
+    background: #dedec3;
+    transition: transform 0.5s;}
+
+.item:hover {
+    cursor: pointer;
+    background: #bee382;
+    transform: scale(1.02)
+}
+
+.img {
+    width: 95%;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.name {
+    font-size: 15px;
+}
+
+.text {
+    font-size: 12px;
+}
