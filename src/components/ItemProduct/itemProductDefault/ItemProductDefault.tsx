@@ -10,7 +10,11 @@ type MyProps = {
 const ItemProductDefault: FC<MyProps> = ({ data, changeCardState }) => {
   const { image, name, gender } = data;
   return (
-    <div className={styles.item} onClick={changeCardState}>
+    <div
+      className={styles.item}
+      data-testid="itemProductDefault"
+      onClick={changeCardState}
+    >
       <img className={styles.img} src={image} alt={name} />
       <div className={styles.name}>{name}</div>
       <div className={styles.text}>{`Gender: (${gender})`}</div>

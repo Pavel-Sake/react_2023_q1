@@ -12,22 +12,21 @@ const initialFormSate = {
   consent: false,
 };
 
-describe("from renders", () => {
+describe("form test", () => {
   test("should render the basic fields", () => {
     render(
       <Form changeStateAddCard={mockedSetTod} dataForm={initialFormSate} />
     );
 
     expect(screen.getByRole("textbox", { name: "Name" })).toBeInTheDocument();
-    // expect(
-    //   screen.getByRole("textbox", { name: "Surname" })
-    // ).toBeInTheDocument();
-    // expect(screen.getByTestId("intupDate")).toBeInTheDocument();
-    // expect(screen.getByRole("combobox", { name: "" })).toBeInTheDocument();
-    // expect(screen.getByRole("radio", { name: "male" })).toBeInTheDocument();
-    // expect(screen.getByRole("radio", { name: "female" })).toBeInTheDocument();
-    //
-    // expect(screen.getByRole("button", { name: "click" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("textbox", { name: "Surname" })
+    ).toBeInTheDocument();
+    expect(screen.getByTestId("intupDate")).toBeInTheDocument();
+    expect(screen.getByRole("combobox", { name: "" })).toBeInTheDocument();
+    expect(screen.getByRole("radio", { name: "male" })).toBeInTheDocument();
+    expect(screen.getByRole("radio", { name: "female" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "click" })).toBeInTheDocument();
   });
 
   test("should input show correct text", () => {
@@ -43,29 +42,4 @@ describe("from renders", () => {
 
     expect(inputTextName.value).toBe("paave");
   });
-
-  // test("---------------------", async () => {
-  //   render(
-  //     <Form changeStateAddCard={mockedSetTod} dataForm={initialFormSate} />
-  //   );
-  //
-  //   const inputTextName: HTMLInputElement = screen.getByRole("textbox", {
-  //     name: "Name",
-  //   });
-  //
-  //   const buttonSubmit = screen.getByRole("button", { name: "click" });
-  //
-  //   fireEvent.change(inputTextName, { target: { value: "Paave" } });
-  //   fireEvent.click(buttonSubmit)
-  //
-  //
-  //
-  //   fireEvent.change(inputTextName, { target: { value: "Paave" } });
-  //   fireEvent.click(buttonSubmit)
-  //
-  //   const cards = await screen.findAllByTestId("userCards")
-  //
-  //
-  //   expect(cards.length).toBe(1);
-  // });
 });

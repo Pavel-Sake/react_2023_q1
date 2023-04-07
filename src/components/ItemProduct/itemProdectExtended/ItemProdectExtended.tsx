@@ -34,7 +34,11 @@ const ItemProductExtended: FC<MyProps> = ({ data, changeCardState }) => {
   }
 
   return (
-    <div className={styles.cardOverlay} onClick={handleClickCardState}>
+    <div
+      className={styles.cardOverlay}
+      data-testid="itemProductExtended"
+      onClick={handleClickCardState}
+    >
       <div className={styles.card}>
         <div className={styles.card__block_left}>
           <img className={styles.img} src={image} alt={name} />
@@ -54,7 +58,11 @@ const ItemProductExtended: FC<MyProps> = ({ data, changeCardState }) => {
             );
           })}
         </div>
-        <button className={styles.button} onClick={handleClickCardState}>
+        <button
+          className={styles.button}
+          data-testid="button-close"
+          onClick={handleClickCardState}
+        >
           close
         </button>
       </div>

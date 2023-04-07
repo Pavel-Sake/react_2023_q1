@@ -1,22 +1,77 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 
 import { ItemProduct } from "./ItemProduct";
 
-const itemProduct = {
-  name: "Daisy Jones and The Six",
-  author: "Taylor Jenkins Reid",
-  price: 50,
-  currency: "zł",
-  rating: 4,
-  src: "/img/DaisyJones.jpg",
-  id: 11,
+import { ICharacterCard } from "../../interfaces/ICharacterCard";
+
+const propsData: ICharacterCard = {
+  id: 1,
+  name: "name",
+  status: "",
+  species: "",
+  gender: "",
+  type: "",
+  origin: {
+    name: "",
+    url: "",
+  },
+  location: {
+    name: "",
+    url: "",
+  },
+  image: "",
+  episode: [],
+  url: "",
+  created: "",
 };
 
-test("is render element", () => {
-  // render(<ItemProduct />);
-  //
-  // const item = screen.getByTestId("product-item");
-  //
-  // expect(item).toBeInTheDocument();
+describe("test ItemProduct", () => {
+  test("render in document", () => {
+    render(<ItemProduct data={propsData} />);
+
+    const itemProductDefault = screen.getByTestId("itemProductDefault");
+
+    expect(itemProductDefault).toBeInTheDocument();
+  });
+
+  test("should render ItemProductExtended when itemProductDefault is clicked", async () => {
+    render(<ItemProduct data={propsData} />);
+
+    const itemProductDefault = screen.getByTestId("itemProductDefault");
+    fireEvent.click(itemProductDefault);
+
+    const itemProductExtended = screen.getByTestId("itemProductExtended");
+
+    expect(itemProductExtended).toBeInTheDocument();
+  });
+
+  test("should not render ItemProductExtended when overlay is clicked", async () => {
+    render(<ItemProduct data={propsData} />);
+
+    const itemProductDefault = screen.getByTestId("itemProductDefault");
+    fireEvent.click(itemProductDefault);
+    const itemProductExtended = screen.getByTestId("itemProductExtended");
+
+    fireEvent.click(itemProductExtended);
+
+    const itemProductExtended1 = screen.queryByTestId("itemProductExtended");
+
+    expect(itemProductExtended1).toBeNull();
+  });
+
+  test("should not render ItemProductExtended when button close is clicked", async () => {
+    render(<ItemProduct data={propsData} />);
+
+    const itemProductDefault = screen.getByTestId("itemProductDefault");
+    fireEvent.click(itemProductDefault);
+    // const itemProductExtended = screen.getByTestId("itemProductExtended");
+    const buttonClose = screen.getByTestId("button-close");
+
+    fireEvent.click(buttonClose);
+
+    const itemProductExtended1 = screen.queryByTestId("itemProductExtended");
+
+    expect(itemProductExtended1).toBeNull();
+  });
 });

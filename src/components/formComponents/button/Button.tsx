@@ -7,7 +7,9 @@ type MyProps = {
 function Button({ name }: MyProps) {
   return (
     <>
-      <button type="submit">{name} </button>
+      <button type="submit" data-testid="button">
+        {name}{" "}
+      </button>
     </>
   );
 }

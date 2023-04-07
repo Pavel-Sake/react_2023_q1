@@ -20,7 +20,7 @@ function SearchBlock({ handleSetSearchName }: MyProps) {
   }
 
   return (
-    <div className={styles.searchBlock}>
+    <div className={styles.searchBlock} data-testid="searchBlock">
       <SearchInput
         placeholder="search"
         textInput={textInput}

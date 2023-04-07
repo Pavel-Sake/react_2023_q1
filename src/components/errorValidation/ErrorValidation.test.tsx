@@ -30,6 +30,6 @@ describe("is ErrorValidation in document", () => {
     const errorElementTrue = screen.getByTestId("error-true");
 
     expect(errorElementTrue).toBeInTheDocument();
-    expect(errorElementTrue).toHaveTextContent(text);
+    expect(errorElementTrue).toHaveTextContent("value is not valid");
   });
 });
