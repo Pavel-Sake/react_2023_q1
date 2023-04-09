@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SearchInput } from "../searchInput/SearchInput";
 import { SearchButton } from "../searchButton/SearchButton";
 
@@ -13,11 +13,20 @@ function SearchBlock({ handleSetSearchName }: MyProps) {
 
   function handleInputSearch(text: string): void {
     setTextInput(text);
+    localStorage.setItem("inputValue", text);
   }
 
   function handleSubmitTextInput() {
     handleSetSearchName(textInput);
   }
+
+  useEffect(() => {
+    const inputValue: string | null = localStorage.getItem("inputValue");
+    if (inputValue) {
+      setTextInput(inputValue);
+      handleSetSearchName(inputValue);
+    }
+  }, [handleSetSearchName]);
 
   return (
     <div className={styles.searchBlock} data-testid="searchBlock">
