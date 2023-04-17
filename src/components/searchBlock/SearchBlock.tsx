@@ -1,40 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SearchInput } from "../searchInput/SearchInput";
 import { SearchButton } from "../searchButton/SearchButton";
 
 import styles from "./styles.module.css";
+import { searchTextSlice } from "../../store/reducers/SearchTextSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 
-type MyProps = {
-  handleSetSearchName: (text: string) => void;
-};
 
-function SearchBlock({ handleSetSearchName }: MyProps) {
-  const [textInput, setTextInput] = useState("");
 
-  function handleInputSearch(text: string): void {
-    setTextInput(text);
-    localStorage.setItem("inputValue", text);
-  }
+function SearchBlock( ) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const { text } = useAppSelector((state) => state.searchTextReducer);
+  const dispatch = useAppDispatch();
+  const { searchCard } = searchTextSlice.actions;
 
   function handleSubmitTextInput() {
-    handleSetSearchName(textInput);
+    if (inputRef.current) {
+      dispatch(searchCard(inputRef.current.value))
+    }
   }
 
   useEffect(() => {
-    const inputValue: string | null = localStorage.getItem("inputValue");
-    if (inputValue) {
-      setTextInput(inputValue);
-      handleSetSearchName(inputValue);
-    }
-  }, [handleSetSearchName]);
+    // const inputValue: string | null = localStorage.getItem("inputValue");
+    // if (inputValue) {
+    //   setTextInput(inputValue);
+    //   handleSetSearchName(inputValue);
+    // }
+  }, []);
 
   return (
     <div className={styles.searchBlock} data-testid="searchBlock">
-      <SearchInput
-        placeholder="search"
-        textInput={textInput}
-        handleInputSearch={handleInputSearch}
-      />
+      <div>{text}</div>
+      <SearchInput placeholder="search" inputRef={inputRef} />
       <SearchButton handleSubmitTextInput={handleSubmitTextInput} />
     </div>
   );

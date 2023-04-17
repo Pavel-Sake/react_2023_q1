@@ -9,18 +9,15 @@ interface PathProps {
 }
 
 function RootLayout({ paths }: PathProps) {
-  const [searchName, setSearchName] = useState<string>("");
 
-  function handleSetSearchName(text: string) {
-    setSearchName(text);
-  }
+
 
   return (
     <div className={styles.rootLayout}>
-      <Header paths={paths} handleSetSearchName={handleSetSearchName} />
+      <Header paths={paths} />
       <main className={styles.main}>
         <div className="container">
-          <Outlet context={searchName} />
+          <Outlet />
         </div>
       </main>
     </div>

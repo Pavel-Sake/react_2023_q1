@@ -8,7 +8,6 @@ import { SearchBlock } from "../searchBlock/SearchBlock";
 
 interface PathProps {
   paths: Ipath[];
-  handleSetSearchName: (text: string) => void;
 }
 
 type PathLibrary = {
@@ -31,7 +30,7 @@ export function getPageLabel(key: string): string {
   }
 }
 
-function Header({ paths, handleSetSearchName }: PathProps) {
+function Header({ paths }: PathProps) {
   const [path, setPath] = useState({ path: "Home" });
   const location = useLocation();
 
@@ -50,7 +49,7 @@ function Header({ paths, handleSetSearchName }: PathProps) {
         <Nav paths={paths} changePageLabel={changePageLabel} />
         <div className={styles.searchBlock}>
           <div data-testid="page-label">{path.path}</div>
-          <SearchBlock handleSetSearchName={handleSetSearchName} />
+          <SearchBlock />
         </div>
       </div>
     </div>

@@ -3,23 +3,17 @@ import styles from "./styles.module.css";
 
 type MyProps = {
   placeholder: string;
-  textInput: string;
-  handleInputSearch: (text: string) => void;
+  inputRef: React.RefObject<HTMLInputElement>;
 };
 
-function SearchInput({ placeholder, textInput, handleInputSearch }: MyProps) {
-  function handleChangeInput(e: React.FormEvent<HTMLInputElement>): void {
-    handleInputSearch(e.currentTarget.value);
-  }
-
+function SearchInput({ placeholder, inputRef }: MyProps) {
   return (
     <input
       className={styles.input}
+      ref={inputRef}
       data-testid="searchInput"
       type="text"
       placeholder={placeholder}
-      value={textInput}
-      onChange={handleChangeInput}
     />
   );
 }
