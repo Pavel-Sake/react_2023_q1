@@ -16,11 +16,28 @@ import { IUserFormState } from "../../../interfaces/IUserFormState";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import { cardFormSlice } from "../../../store/reducers/CardFormSlice";
 
-type MyProps = {
-  dataForm: IUserFormState;
+
+const initialFormData = {
+  name: "",
+  surname: "",
+  birthday: "",
+  country: "Poland",
+  gender: "",
+  imgFile: null,
+  consent: false,
 };
 
-function Form({  dataForm }: MyProps) {
+
+function clearForm(dataForm: IUserFormState, setValue: any) {
+
+  const arrDataForm = Object.entries(dataForm);
+
+  arrDataForm.forEach(([key, value]) => {    // put in a separate function
+    setValue(key, value);
+  });
+}
+
+function Form() {
   const {
     register,
     setValue,
@@ -32,9 +49,8 @@ function Form({  dataForm }: MyProps) {
 
   const dispatch = useAppDispatch();
   const { addCardForm } = cardFormSlice.actions;
-  // const {cards} = useAppSelector((state) => state.cardForm)
 
-  function uploadImage(data: any) {
+   function uploadImageAndDispatch(data: any) {
     const reader = new FileReader();
     reader.onload = () => {
       const img = reader.result!.toString();
@@ -42,26 +58,22 @@ function Form({  dataForm }: MyProps) {
       data.imgFile = img;
 
       dispatch(addCardForm(data))
+
     };
     reader.readAsDataURL(data.imgFile[0]);
   }
 
 
-
   function handleSubmitForm(data: any) {
-    const arrDataForm = Object.entries(dataForm);
 
     if (data.imgFile.length > 0) {
-      uploadImage(data);
+       uploadImageAndDispatch(data);
     } else {
       data.imgFile = null;
       dispatch(addCardForm(data))
     }
 
-    // arrDataForm.forEach(([key, value]) => {    // put in a separate function
-    //   setValue(key, value);
-    // });
-
+    clearForm(initialFormData, setValue)
 
   }
 

@@ -4,21 +4,9 @@ import { UserCard } from "../../components/userCard/UserCard";
 import { Notification } from "../../components/formComponents/notification/Notification";
 import styles from "./styles.module.css";
 
-import { IUserFormState } from "../../interfaces/IUserFormState";
 import { useAppSelector } from "../../hooks/redux";
 
-const initialFormSate = {
-  name: "",
-  surname: "",
-  birthday: "",
-  country: "Poland",
-  gender: "",
-  imgFile: null,
-  consent: false,
-};
-
 function FormPage() {
-  const [dataForm] = useState<IUserFormState>(initialFormSate);
   const [isNotification, setIsNotification] = useState(false);
 
   const { cards } = useAppSelector((state) => state.cardForm);
@@ -34,7 +22,7 @@ function FormPage() {
   return (
     <div className={styles.formPage} data-testid="form-page">
       {isNotification ? <Notification /> : null}
-      <Form dataForm={dataForm} />
+      <Form />
       {cards.map((item, index) => {
         return <UserCard key={index} card={item} />;
       })}
