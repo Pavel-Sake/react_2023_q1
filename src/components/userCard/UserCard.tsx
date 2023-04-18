@@ -11,6 +11,7 @@ type MyProps = {
 };
 
 function UserCard({ card }: MyProps) {
+
   const { name, surname, birthday, country, gender, imgFile } = card;
 
   return (

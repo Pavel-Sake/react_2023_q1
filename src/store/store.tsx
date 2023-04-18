@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import searchTextReducer from "./reducers/SearchTextSlice";
+import cardForm from "./reducers/CardFormSlice"
 import { rickAndMortyApi } from "../services/rickAndMortyApi";
 
 const rootReducer = combineReducers({
   searchTextReducer: searchTextReducer,
+  cardForm: cardForm,
   [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer,
 });
 

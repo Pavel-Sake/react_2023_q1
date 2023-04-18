@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, RefObject } from "react";
+import React, {ChangeEvent, ChangeEventHandler, RefObject, useEffect} from "react";
 import { useForm } from "react-hook-form";
 
 import { InputText } from "../inputText/InputText";
@@ -13,13 +13,14 @@ import styles from "./styles.module.css";
 import { InputDate } from "../inputDate/InputDate";
 import { InputCheckbox } from "../inputCheckbox/inputCheckbox";
 import { IUserFormState } from "../../../interfaces/IUserFormState";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
+import { cardFormSlice } from "../../../store/reducers/CardFormSlice";
 
 type MyProps = {
-  changeStateAddCard: (dataFromForm: IUserFormState) => void;
   dataForm: IUserFormState;
 };
 
-function Form({ changeStateAddCard, dataForm }: MyProps) {
+function Form({  dataForm }: MyProps) {
   const {
     register,
     setValue,
@@ -29,36 +30,48 @@ function Form({ changeStateAddCard, dataForm }: MyProps) {
 
   const { name, surname, birthday, countries, gender, consent } = pageFormData;
 
-  function uploadImage(data: any) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const img = reader.result!.toString();
+  const dispatch = useAppDispatch();
+  const { addCardForm } = cardFormSlice.actions;
+  // const {cards} = useAppSelector((state) => state.cardForm)
 
-        data.imgFile = img
-        changeStateAddCard(data)
-      };
-      reader.readAsDataURL(data.imgFile[0]);
+  function uploadImage(data: any) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = reader.result!.toString();
+
+      data.imgFile = img;
+
+      dispatch(addCardForm(data))
+    };
+    reader.readAsDataURL(data.imgFile[0]);
   }
+
+
 
   function handleSubmitForm(data: any) {
     const arrDataForm = Object.entries(dataForm);
 
-
     if (data.imgFile.length > 0) {
-      uploadImage(data)
+      uploadImage(data);
     } else {
-      data.imgFile = null
-      changeStateAddCard(data)
+      data.imgFile = null;
+      dispatch(addCardForm(data))
     }
 
-    arrDataForm.forEach(([key, value]) => {
-        setValue(key, value)
-    })
+    // arrDataForm.forEach(([key, value]) => {    // put in a separate function
+    //   setValue(key, value);
+    // });
+
 
   }
 
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)} data-testid="form">
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit(handleSubmitForm)}
+      data-testid="form"
+    >
       <fieldset className={styles.fieldset}>
         <legend className={styles.legend}>Card</legend>
         <InputText data={name} register={register} errors={errors} />

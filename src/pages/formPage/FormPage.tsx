@@ -5,6 +5,7 @@ import { Notification } from "../../components/formComponents/notification/Notif
 import styles from "./styles.module.css";
 
 import { IUserFormState } from "../../interfaces/IUserFormState";
+import { useAppSelector } from "../../hooks/redux";
 
 const initialFormSate = {
   name: "",
@@ -16,44 +17,25 @@ const initialFormSate = {
   consent: false,
 };
 
-const keyUserCard = "userCards";
-
 function FormPage() {
   const [dataForm] = useState<IUserFormState>(initialFormSate);
   const [isNotification, setIsNotification] = useState(false);
-  const [userCards, setUserCards] = useState<IUserFormState[]>([]);
+
+  const { cards } = useAppSelector((state) => state.cardForm);
 
   useEffect(() => {
-    const userCardsLocal = localStorage.getItem(keyUserCard);
-
-    if (userCardsLocal) {
-      const userCards = JSON.parse(userCardsLocal);
-      setUserCards(userCards);
-    }
-  }, []);
-
-  function changeStateAddCard(dataFromForm: IUserFormState): void {
     setIsNotification(true);
 
     setTimeout(() => {
       setIsNotification(false);
     }, 500);
-
-    setUserCards((state: IUserFormState[]): IUserFormState[] => {
-      const userCards: IUserFormState[] = [...state];
-      userCards.push(dataFromForm);
-
-      localStorage.setItem(keyUserCard, JSON.stringify(userCards));
-
-      return userCards;
-    });
-  }
+  }, [cards]);
 
   return (
     <div className={styles.formPage} data-testid="form-page">
       {isNotification ? <Notification /> : null}
-      <Form changeStateAddCard={changeStateAddCard} dataForm={dataForm} />
-      {userCards.map((item, index) => {
+      <Form dataForm={dataForm} />
+      {cards.map((item, index) => {
         return <UserCard key={index} card={item} />;
       })}
     </div>
