@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form } from "../../components/formComponents/form/Form";
 import { UserCard } from "../../components/userCard/UserCard";
 import { Notification } from "../../components/formComponents/notification/Notification";
@@ -11,18 +11,18 @@ function FormPage() {
 
   const { cards } = useAppSelector((state) => state.cardForm);
 
-  useEffect(() => {
+  function showNotification() {
     setIsNotification(true);
 
     setTimeout(() => {
       setIsNotification(false);
     }, 500);
-  }, [cards]);
+  }
 
   return (
     <div className={styles.formPage} data-testid="form-page">
       {isNotification ? <Notification /> : null}
-      <Form />
+      <Form showNotification={showNotification} />
       {cards.map((item, index) => {
         return <UserCard key={index} card={item} />;
       })}

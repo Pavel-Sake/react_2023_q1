@@ -37,7 +37,11 @@ function clearForm(dataForm: IUserFormState, setValue: any) {
   });
 }
 
-function Form() {
+type MyProps = {
+  showNotification: () => void
+}
+
+function Form({showNotification}: MyProps) {
   const {
     register,
     setValue,
@@ -72,6 +76,8 @@ function Form() {
       data.imgFile = null;
       dispatch(addCardForm(data))
     }
+
+    showNotification()
 
     clearForm(initialFormData, setValue)
 
