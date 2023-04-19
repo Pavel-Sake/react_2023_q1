@@ -7,7 +7,7 @@ type MyProps = {
 
 function SearchButton({ handleSubmitTextInput }: MyProps) {
   return (
-    <div>
+    <div data-testid="SearchButton">
       <button className={styles.searchButton} onClick={handleSubmitTextInput}>
         search
       </button>
